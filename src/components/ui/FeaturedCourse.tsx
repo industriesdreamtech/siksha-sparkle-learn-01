@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Clock, Users, BookOpen, Star } from 'lucide-react';
+import { ArrowRight, Clock, Users, BookOpen, Star, Video } from 'lucide-react';
 import { Course } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -29,6 +29,21 @@ export function FeaturedCourse({ course }: FeaturedCourseProps) {
             onLoad={() => setIsLoaded(true)}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/90 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          {/* Free Badge */}
+          {course.isFree && (
+            <Badge className="absolute bottom-3 left-3 bg-green-100 text-green-700 hover:bg-green-200">
+              Free
+            </Badge>
+          )}
+          
+          {/* Video Badge */}
+          {course.videoUrl && (
+            <Badge className="absolute bottom-3 right-3 bg-blue-100 text-blue-700 hover:bg-blue-200">
+              <Video className="h-3 w-3 mr-1" />
+              Video
+            </Badge>
+          )}
         </div>
         
         {/* Content */}
@@ -63,7 +78,11 @@ export function FeaturedCourse({ course }: FeaturedCourseProps) {
           <div className="mt-auto flex items-center justify-between">
             <div>
               <div className="text-sm text-muted-foreground">Price</div>
-              <div className="text-2xl font-medium">₹{course.inrPrice?.toLocaleString() || (course.price * 80).toLocaleString()}</div>
+              {course.isFree ? (
+                <div className="text-2xl font-medium text-green-600">Free</div>
+              ) : (
+                <div className="text-2xl font-medium">₹{course.inrPrice?.toLocaleString() || (course.price * 80).toLocaleString()}</div>
+              )}
             </div>
             
             <div className="flex gap-2">

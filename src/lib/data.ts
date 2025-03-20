@@ -14,6 +14,8 @@ export interface Course {
   students: number;
   featured?: boolean;
   tags: string[];
+  isFree?: boolean; // Add this property to indicate free courses
+  videoUrl?: string; // Add this to store video URL for video courses
 }
 
 export interface Instructor {
@@ -286,6 +288,7 @@ export const categories = [
   'Cloud Computing',
   'Design',
   'Business',
+  'Excel',
 ];
 
 export const sampleCourses: Course[] = [
@@ -419,6 +422,95 @@ export const sampleCourses: Course[] = [
     rating: 4.7,
     students: 4350,
     tags: ['Blockchain', 'Ethereum', 'Solidity', 'Smart Contracts', 'Web3']
+  },
+  {
+    id: '9',
+    title: 'Advanced Excel Masterclass',
+    instructor: 'Michael Rodriguez',
+    description: 'Master advanced Excel functions, pivot tables, macros, VBA, and data analysis techniques to boost your productivity and career prospects. This free course covers everything from complex formulas to dashboard creation.',
+    price: 0,
+    inrPrice: 0,
+    image: 'https://images.unsplash.com/photo-1517180102446-f3ece451e9d1?q=80&w=2070&auto=format&fit=crop',
+    category: 'Excel',
+    level: 'Advanced',
+    duration: '8 weeks',
+    lessons: 42,
+    rating: 4.9,
+    students: 23500,
+    isFree: true,
+    featured: true,
+    tags: ['Excel', 'Data Analysis', 'VBA', 'Macros', 'Pivot Tables']
+  },
+  {
+    id: '10',
+    title: 'Excel for Beginners: Complete Guide',
+    instructor: 'Ananya Desai',
+    description: 'Start your Excel journey from the basics and gradually build up to intermediate skills. Learn formatting, formulas, functions, charts, tables, and practical applications for business and personal use.',
+    price: 0,
+    inrPrice: 0,
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop',
+    category: 'Excel',
+    level: 'Beginner',
+    duration: '4 weeks',
+    lessons: 24,
+    rating: 4.7,
+    students: 19800,
+    isFree: true,
+    tags: ['Excel', 'Formulas', 'Functions', 'Charts', 'Formatting']
+  },
+  {
+    id: '11',
+    title: 'AI-Powered Video Production',
+    instructor: 'Dr. Sarah Chen',
+    description: 'Learn how to leverage AI tools for video creation, editing, and production. This course covers AI-generated visuals, automated editing, voice synthesis, and next-generation video effects with practical demonstrations.',
+    price: 0,
+    inrPrice: 0,
+    image: 'https://images.unsplash.com/photo-1626379953819-c293cf64c206?q=80&w=2070&auto=format&fit=crop',
+    category: 'AI & Machine Learning',
+    level: 'Intermediate',
+    duration: '6 weeks',
+    lessons: 32,
+    rating: 4.8,
+    students: 8750,
+    isFree: true,
+    videoUrl: 'https://example.com/ai-video-production',
+    tags: ['AI', 'Video Production', 'Content Creation', 'Generative AI']
+  },
+  {
+    id: '12',
+    title: 'Practical Deep Learning for Computer Vision',
+    instructor: 'Dr. Priya Sharma',
+    description: 'Build practical computer vision applications using deep learning. This video-based course includes hands-on projects with TensorFlow and PyTorch, covering image classification, object detection, and facial recognition.',
+    price: 0,
+    inrPrice: 0,
+    image: 'https://images.unsplash.com/photo-1642698273171-1f6e1b52feb1?q=80&w=2070&auto=format&fit=crop',
+    category: 'AI & Machine Learning',
+    level: 'Advanced',
+    duration: '10 weeks',
+    lessons: 45,
+    rating: 4.9,
+    students: 12340,
+    isFree: true,
+    videoUrl: 'https://example.com/deep-learning-vision',
+    tags: ['Deep Learning', 'Computer Vision', 'TensorFlow', 'PyTorch', 'AI']
+  },
+  {
+    id: '13',
+    title: 'Generative AI for Creative Professionals',
+    instructor: 'Dr. Sarah Chen',
+    description: 'Harness the power of generative AI models like GPT, DALL-E, and Midjourney for creative tasks. This video course shows how to integrate AI into your creative workflow for art, writing, music, and design.',
+    price: 0,
+    inrPrice: 0,
+    image: 'https://images.unsplash.com/photo-1675271591211-241b5d06e396?q=80&w=2070&auto=format&fit=crop',
+    category: 'AI & Machine Learning',
+    level: 'Beginner',
+    duration: '5 weeks',
+    lessons: 28,
+    rating: 4.7,
+    students: 14560,
+    isFree: true,
+    videoUrl: 'https://example.com/generative-ai-course',
+    tags: ['Generative AI', 'Creative AI', 'DALL-E', 'GPT', 'Midjourney']
   }
 ];
 

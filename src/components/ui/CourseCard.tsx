@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, Users, BookOpen, Star } from 'lucide-react';
+import { Clock, Users, BookOpen, Star, Video } from 'lucide-react';
 import { Course } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
@@ -45,6 +45,25 @@ export function CourseCard({ course, featured = false }: CourseCardProps) {
             {course.category}
           </Badge>
           
+          {/* Video Indicator */}
+          {course.videoUrl && (
+            <Badge 
+              className="absolute top-3 left-[calc(3rem+8px+var(--badge-width,0px))] bg-blue-100 text-blue-700 hover:bg-blue-200"
+            >
+              <Video className="h-3 w-3 mr-1" />
+              Video
+            </Badge>
+          )}
+          
+          {/* Free Course Badge */}
+          {course.isFree && (
+            <Badge 
+              className="absolute bottom-3 left-3 bg-green-100 text-green-700 hover:bg-green-200"
+            >
+              Free
+            </Badge>
+          )}
+          
           {/* Rating */}
           <div className="absolute top-3 right-3 flex items-center space-x-1 bg-white/90 text-foreground rounded-full px-2 py-1 text-xs font-medium">
             <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
@@ -79,7 +98,11 @@ export function CourseCard({ course, featured = false }: CourseCardProps) {
           
           <div className="flex items-center justify-between pt-3 border-t border-border/50">
             <div className="font-medium">
-              <span className="text-lg">₹{course.inrPrice?.toLocaleString() || (course.price * 80).toLocaleString()}</span>
+              {course.isFree ? (
+                <span className="text-lg text-green-600">Free</span>
+              ) : (
+                <span className="text-lg">₹{course.inrPrice?.toLocaleString() || (course.price * 80).toLocaleString()}</span>
+              )}
             </div>
             <Badge variant="outline" className={
               course.level === 'Beginner' 
