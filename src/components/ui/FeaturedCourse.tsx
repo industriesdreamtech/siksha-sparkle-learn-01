@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Clock, Users, BookOpen, Star, Video } from 'lucide-react';
+import { ArrowRight, Clock, Users, BookOpen, Star } from 'lucide-react';
 import { Course } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -34,14 +34,6 @@ export function FeaturedCourse({ course }: FeaturedCourseProps) {
           {course.isFree && (
             <Badge className="absolute bottom-3 left-3 bg-green-100 text-green-700 hover:bg-green-200">
               Free
-            </Badge>
-          )}
-          
-          {/* Video Badge */}
-          {course.videoUrl && (
-            <Badge className="absolute bottom-3 right-3 bg-blue-100 text-blue-700 hover:bg-blue-200">
-              <Video className="h-3 w-3 mr-1" />
-              Video
             </Badge>
           )}
         </div>

@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, Users, BookOpen, Star, Video } from 'lucide-react';
+import { Clock, Users, BookOpen, Star } from 'lucide-react';
 import { Course } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
@@ -44,16 +44,6 @@ export function CourseCard({ course, featured = false }: CourseCardProps) {
           >
             {course.category}
           </Badge>
-          
-          {/* Video Indicator */}
-          {course.videoUrl && (
-            <Badge 
-              className="absolute top-3 left-[calc(3rem+8px+var(--badge-width,0px))] bg-blue-100 text-blue-700 hover:bg-blue-200"
-            >
-              <Video className="h-3 w-3 mr-1" />
-              Video
-            </Badge>
-          )}
           
           {/* Free Course Badge */}
           {course.isFree && (

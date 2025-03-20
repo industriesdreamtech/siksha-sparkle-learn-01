@@ -1,23 +1,33 @@
 
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { CourseCard } from '@/components/ui/CourseCard';
 import { CategoryFilter } from '@/components/ui/CategoryFilter';
 import { getCoursesByCategory, categories } from '@/lib/data';
-import { Search, Filter, SlidersHorizontal, ChevronDown } from 'lucide-react';
+import { Search, Filter, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 const Courses = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const searchParams = new URLSearchParams(location.search);
+  const searchQuery = searchParams.get('search') || '';
+  
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [displayCourses, setDisplayCourses] = useState(getCoursesByCategory('All'));
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [localSearchQuery, setLocalSearchQuery] = useState(searchQuery);
   const [sortBy, setSortBy] = useState('popularity');
   
   const levels = ['Beginner', 'Intermediate', 'Advanced'];
+  
+  useEffect(() => {
+    setLocalSearchQuery(searchQuery);
+  }, [searchQuery]);
   
   useEffect(() => {
     let filteredCourses = getCoursesByCategory(selectedCategory);
@@ -28,12 +38,14 @@ const Courses = () => {
     }
     
     // Filter by search query
-    if (searchQuery.trim() !== '') {
-      const query = searchQuery.toLowerCase().trim();
+    if (localSearchQuery.trim() !== '') {
+      const query = localSearchQuery.toLowerCase().trim();
       filteredCourses = filteredCourses.filter(course => 
         course.title.toLowerCase().includes(query) || 
         course.description.toLowerCase().includes(query) ||
-        course.instructor.toLowerCase().includes(query)
+        course.instructor.toLowerCase().includes(query) ||
+        course.category.toLowerCase().includes(query) ||
+        course.tags.some(tag => tag.toLowerCase().includes(query))
       );
     }
     
@@ -53,13 +65,32 @@ const Courses = () => {
     }
     
     setDisplayCourses(filteredCourses);
-  }, [selectedCategory, selectedLevel, searchQuery, sortBy]);
+  }, [selectedCategory, selectedLevel, localSearchQuery, sortBy]);
   
   const clearFilters = () => {
     setSelectedCategory('All');
     setSelectedLevel(null);
-    setSearchQuery('');
+    setLocalSearchQuery('');
     setSortBy('popularity');
+    navigate('/courses');
+  };
+  
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (localSearchQuery.trim() !== searchQuery) {
+      const params = new URLSearchParams(location.search);
+      
+      if (localSearchQuery.trim()) {
+        params.set('search', localSearchQuery);
+      } else {
+        params.delete('search');
+      }
+      
+      navigate({ 
+        pathname: location.pathname,
+        search: params.toString() 
+      });
+    }
   };
   
   return (
@@ -82,16 +113,24 @@ const Courses = () => {
           
           {/* Search and Filter Bar */}
           <div className="flex flex-col md:flex-row gap-4 mt-8 animate-fade-up">
-            <div className="relative flex-1">
+            <form onSubmit={handleSearch} className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <input
                 type="text"
                 placeholder="Search courses..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                value={localSearchQuery}
+                onChange={(e) => setLocalSearchQuery(e.target.value)}
                 className="w-full bg-background border border-input pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
               />
-            </div>
+              <Button 
+                type="submit" 
+                variant="ghost" 
+                size="sm" 
+                className="absolute right-2 top-1/2 transform -translate-y-1/2"
+              >
+                <Search className="h-4 w-4" />
+              </Button>
+            </form>
             
             <div className="flex gap-2">
               <Button 
@@ -187,6 +226,9 @@ const Courses = () => {
               {/* Results summary */}
               <div className="mb-6 text-sm text-muted-foreground">
                 Showing {displayCourses.length} {displayCourses.length === 1 ? 'course' : 'courses'}
+                {localSearchQuery && (
+                  <span> for "{localSearchQuery}"</span>
+                )}
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
