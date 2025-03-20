@@ -1,4 +1,3 @@
-
 export interface Course {
   id: string;
   title: string;
@@ -157,6 +156,122 @@ export const instructors: Instructor[] = [
       "Former team lead at National Cybersecurity Center",
       "Discovered and responsibly disclosed 12 critical vulnerabilities",
       "Regular contributor to OWASP projects"
+    ]
+  },
+  {
+    name: "Dr. Priya Sharma",
+    title: "Data Science & AI Researcher",
+    bio: "Dr. Priya Sharma is a renowned data scientist and AI researcher with expertise in predictive analytics and natural language processing. With a Ph.D. from IIT Delhi and industry experience at leading Indian tech companies, she brings academic rigor and practical insights to her courses. Dr. Sharma is passionate about mentoring the next generation of data scientists in India.",
+    avatar: "https://randomuser.me/api/portraits/women/79.jpg",
+    coverImage: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=2006&auto=format&fit=crop",
+    specializations: ["Data Science", "NLP", "Statistical Modeling", "Python", "Big Data Analytics"],
+    experience: 10,
+    totalStudents: 16500,
+    totalCourses: 7,
+    rating: 4.9,
+    reviews: 1250,
+    social: {
+      twitter: "https://twitter.com/drpriyasharma",
+      linkedin: "https://linkedin.com/in/priyasharma",
+      github: "https://github.com/priyasharma",
+      website: "https://priyasharma.tech"
+    },
+    education: [
+      {
+        degree: "Ph.D. in Computer Science",
+        institution: "IIT Delhi",
+        year: "2013"
+      },
+      {
+        degree: "M.Tech in Artificial Intelligence",
+        institution: "IIT Bombay",
+        year: "2008"
+      },
+      {
+        degree: "B.Tech in Computer Science",
+        institution: "BITS Pilani",
+        year: "2006"
+      }
+    ],
+    achievements: [
+      "Top researcher award at International Conference on Data Science",
+      "Published 18 papers in leading AI journals",
+      "Developed predictive models used by 5 major Indian corporations",
+      "TEDxIndia speaker on the future of AI in developing economies"
+    ]
+  },
+  {
+    name: "Raj Patel",
+    title: "Full Stack Developer & DevOps Expert",
+    bio: "Raj Patel is a full-stack developer and DevOps specialist with over 12 years of experience building scalable web applications and optimizing deployment pipelines. Having worked with startups and established tech companies across India, Raj specializes in MERN stack development, cloud architecture, and containerization technologies. His teaching approach emphasizes hands-on learning and real-world problem-solving.",
+    avatar: "https://randomuser.me/api/portraits/men/92.jpg",
+    coverImage: "https://images.unsplash.com/photo-1543013309-0d1f4edeb868?q=80&w=2048&auto=format&fit=crop",
+    specializations: ["MERN Stack", "AWS", "Docker", "Kubernetes", "CI/CD"],
+    experience: 12,
+    totalStudents: 21300,
+    totalCourses: 9,
+    rating: 4.8,
+    reviews: 1680,
+    social: {
+      twitter: "https://twitter.com/rajpateldev",
+      linkedin: "https://linkedin.com/in/rajpatel",
+      github: "https://github.com/rajpatel",
+      website: "https://rajpatel.dev"
+    },
+    education: [
+      {
+        degree: "M.S. in Software Engineering",
+        institution: "VIT Vellore",
+        year: "2011"
+      },
+      {
+        degree: "B.Tech in Information Technology",
+        institution: "NIT Surat",
+        year: "2009"
+      }
+    ],
+    achievements: [
+      "Tech lead for India's fastest-growing fintech platform",
+      "Open source contributor to major DevOps tools",
+      "Speaker at multiple tech conferences including JSFoo India",
+      "Author of 'Modern DevOps Practices' e-book"
+    ]
+  },
+  {
+    name: "Ananya Desai",
+    title: "UX/UI Design & Product Strategy",
+    bio: "Ananya Desai is a UX/UI designer and product strategist who has shaped digital experiences for millions of users across India. Her work combines design thinking, user psychology, and business strategy to create intuitive interfaces that drive engagement and conversion. Ananya previously led design teams at top Indian startups and now shares her expertise through courses that bridge the gap between design theory and practical implementation.",
+    avatar: "https://randomuser.me/api/portraits/women/62.jpg",
+    coverImage: "https://images.unsplash.com/photo-1541462608143-67571c6738dd?q=80&w=2070&auto=format&fit=crop",
+    specializations: ["UX Design", "UI Design", "Product Strategy", "Design Systems", "Figma"],
+    experience: 8,
+    totalStudents: 14200,
+    totalCourses: 5,
+    rating: 4.7,
+    reviews: 960,
+    social: {
+      twitter: "https://twitter.com/ananyauxdesign",
+      linkedin: "https://linkedin.com/in/ananyaDesai",
+      github: "https://github.com/ananyaDesai",
+      website: "https://ananyaDesai.design"
+    },
+    education: [
+      {
+        degree: "M.Des in Interaction Design",
+        institution: "IDC, IIT Bombay",
+        year: "2015"
+      },
+      {
+        degree: "B.Des in Communication Design",
+        institution: "NID Ahmedabad",
+        year: "2013"
+      }
+    ],
+    achievements: [
+      "Design lead for award-winning Indian e-commerce platform",
+      "Speaker at India Design Summit and DesignUp",
+      "Recipient of 'Young Designer of the Year' award",
+      "Creator of popular design system used by multiple startups"
     ]
   }
 ];
