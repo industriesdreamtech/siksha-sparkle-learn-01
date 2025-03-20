@@ -70,7 +70,12 @@ export function Navbar() {
           </Link>
           <Link 
             to="/instructors" 
-            className="px-3 py-2 rounded-md text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-secondary/50 transition-colors"
+            className={cn(
+              "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+              location.pathname.includes("/instructors") && !location.pathname.includes("/instructor/") 
+                ? "text-primary" 
+                : "text-foreground/70 hover:text-foreground hover:bg-secondary/50"
+            )}
           >
             Instructors
           </Link>
@@ -91,8 +96,12 @@ export function Navbar() {
             <Bell className="h-5 w-5" />
           </button>
           <div className="h-6 w-px bg-border"></div>
-          <Button variant="secondary" size="sm" className="px-4">Sign In</Button>
-          <Button size="sm" className="px-4">Sign Up</Button>
+          <Button variant="secondary" size="sm" className="px-4" asChild>
+            <Link to="/sign-in">Sign In</Link>
+          </Button>
+          <Button size="sm" className="px-4" asChild>
+            <Link to="/sign-up">Sign Up</Link>
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -133,7 +142,12 @@ export function Navbar() {
             </Link>
             <Link 
               to="/instructors" 
-              className="px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-secondary/50"
+              className={cn(
+                "px-3 py-2 rounded-md text-sm font-medium",
+                location.pathname.includes("/instructors") 
+                  ? "bg-primary/10 text-primary" 
+                  : "text-foreground hover:bg-secondary/50"
+              )}
             >
               Instructors
             </Link>
@@ -147,12 +161,18 @@ export function Navbar() {
             <div className="h-px w-full bg-border/50 my-2"></div>
 
             <div className="flex items-center space-x-2">
-              <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-secondary/80 text-foreground">
+              <Link 
+                to="/sign-in"
+                className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-secondary/80 text-foreground text-center"
+              >
                 Sign In
-              </button>
-              <button className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-primary text-primary-foreground">
+              </Link>
+              <Link 
+                to="/sign-up"
+                className="flex-1 px-3 py-2 rounded-md text-sm font-medium bg-primary text-primary-foreground text-center"
+              >
                 Sign Up
-              </button>
+              </Link>
             </div>
           </nav>
         </div>
