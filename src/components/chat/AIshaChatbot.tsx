@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Bot, Send, X } from 'lucide-react';
+import { MessageCircleHeart, Send, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -77,7 +77,7 @@ export function AIshaChatbot() {
               className={`max-w-[80%] rounded-lg p-3 ${
                 message.isUser
                   ? 'bg-primary text-primary-foreground'
-                  : 'bg-secondary text-secondary-foreground'
+                  : 'bg-accent text-accent-foreground'
               }`}
             >
               {message.text}
@@ -94,7 +94,7 @@ export function AIshaChatbot() {
             onKeyPress={handleKeyPress}
             className="flex-1"
           />
-          <Button size="icon" onClick={handleSendMessage}>
+          <Button size="icon" onClick={handleSendMessage} className="bg-primary hover:bg-secondary">
             <Send className="h-4 w-4" />
           </Button>
         </div>
