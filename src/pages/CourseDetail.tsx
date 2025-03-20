@@ -217,7 +217,7 @@ const CourseDetail = () => {
               <div className="flex flex-col gap-3 mb-8 lg:hidden">
                 <Button size="lg" className="w-full">
                   <ShoppingCart className="mr-2 h-4 w-4" />
-                  Enroll Now - ${course.price}
+                  Enroll Now - ₹{course.inrPrice?.toLocaleString() || (course.price * 80).toLocaleString()}
                 </Button>
                 
                 <Button variant="outline" size="lg" className="w-full" onClick={() => setPreviewVisible(true)}>
@@ -252,7 +252,7 @@ const CourseDetail = () => {
                 {/* Course Info */}
                 <div className="p-6">
                   <div className="flex justify-between items-center mb-6">
-                    <div className="text-3xl font-display font-medium">${course.price}</div>
+                    <div className="text-3xl font-display font-medium">₹{course.inrPrice?.toLocaleString() || (course.price * 80).toLocaleString()}</div>
                   </div>
                   
                   <div className="space-y-4 mb-6">

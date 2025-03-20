@@ -63,7 +63,7 @@ export function FeaturedCourse({ course }: FeaturedCourseProps) {
           <div className="mt-auto flex items-center justify-between">
             <div>
               <div className="text-sm text-muted-foreground">Price</div>
-              <div className="text-2xl font-medium">${course.price}</div>
+              <div className="text-2xl font-medium">₹{course.inrPrice?.toLocaleString() || (course.price * 80).toLocaleString()}</div>
             </div>
             
             <Button asChild>

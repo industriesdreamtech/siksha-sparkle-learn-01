@@ -79,7 +79,7 @@ export function CourseCard({ course, featured = false }: CourseCardProps) {
           
           <div className="flex items-center justify-between pt-3 border-t border-border/50">
             <div className="font-medium">
-              <span className="text-lg">${course.price}</span>
+              <span className="text-lg">₹{course.inrPrice?.toLocaleString() || (course.price * 80).toLocaleString()}</span>
             </div>
             <Badge variant="outline" className={
               course.level === 'Beginner' 
