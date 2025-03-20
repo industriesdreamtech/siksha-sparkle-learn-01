@@ -202,15 +202,17 @@ const CourseDetail = () => {
               </div>
               
               <div className="flex items-center mb-8">
-                <img
-                  src="https://randomuser.me/api/portraits/men/32.jpg" 
-                  alt={course.instructor}
-                  className="w-12 h-12 rounded-full mr-3 object-cover"
-                />
-                <div>
-                  <p className="font-medium">{course.instructor}</p>
-                  <p className="text-sm text-muted-foreground">Course Instructor</p>
-                </div>
+                <Link to={`/instructor/${encodeURIComponent(course.instructor)}`} className="flex items-center group">
+                  <img
+                    src="https://randomuser.me/api/portraits/men/32.jpg" 
+                    alt={course.instructor}
+                    className="w-12 h-12 rounded-full mr-3 object-cover transition-transform group-hover:scale-105"
+                  />
+                  <div>
+                    <p className="font-medium group-hover:text-primary transition-colors">{course.instructor}</p>
+                    <p className="text-sm text-muted-foreground">Course Instructor</p>
+                  </div>
+                </Link>
               </div>
               
               {/* Course Action Buttons - Mobile Only */}

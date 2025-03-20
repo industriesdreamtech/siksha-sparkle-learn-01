@@ -17,6 +17,150 @@ export interface Course {
   tags: string[];
 }
 
+export interface Instructor {
+  name: string;
+  title: string;
+  bio: string;
+  avatar: string;
+  coverImage: string;
+  specializations: string[];
+  experience: number;
+  totalStudents: number;
+  totalCourses: number;
+  rating: number;
+  reviews: number;
+  social: {
+    twitter?: string;
+    linkedin?: string;
+    github?: string;
+    website?: string;
+  };
+  education: {
+    degree: string;
+    institution: string;
+    year: string;
+  }[];
+  achievements: string[];
+}
+
+export const instructors: Instructor[] = [
+  {
+    name: "Dr. Sarah Chen",
+    title: "AI & Machine Learning Expert",
+    bio: "Dr. Sarah Chen is a leading expert in Artificial Intelligence and Machine Learning with over 12 years of industry and research experience. She has published numerous papers in top-tier conferences and journals, and has worked on cutting-edge projects at major tech companies. As an educator, Sarah is passionate about making complex topics accessible to learners of all levels.",
+    avatar: "https://randomuser.me/api/portraits/women/41.jpg",
+    coverImage: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1974&auto=format&fit=crop",
+    specializations: ["Machine Learning", "Neural Networks", "Deep Learning", "Computer Vision", "Natural Language Processing"],
+    experience: 12,
+    totalStudents: 24500,
+    totalCourses: 8,
+    rating: 4.8,
+    reviews: 1842,
+    social: {
+      twitter: "https://twitter.com/sarahchen",
+      linkedin: "https://linkedin.com/in/sarahchen",
+      github: "https://github.com/sarahchen",
+      website: "https://drsarahchen.com"
+    },
+    education: [
+      {
+        degree: "Ph.D. in Computer Science",
+        institution: "Stanford University",
+        year: "2011"
+      },
+      {
+        degree: "M.S. in Artificial Intelligence",
+        institution: "MIT",
+        year: "2008"
+      },
+      {
+        degree: "B.S. in Computer Science",
+        institution: "UC Berkeley",
+        year: "2006"
+      }
+    ],
+    achievements: [
+      "Published 25+ research papers in top AI conferences",
+      "Developed ML algorithms used by 3 Fortune 500 companies",
+      "Recipient of the ACM Distinguished Researcher Award",
+      "TED speaker on the future of AI and education"
+    ]
+  },
+  {
+    name: "Michael Rodriguez",
+    title: "Web Development Specialist",
+    bio: "Michael Rodriguez is a full-stack developer and educator with expertise in modern web technologies. With a background in software engineering at several tech startups, Michael brings real-world experience to his teaching. He focuses on practical, project-based learning that prepares students for professional development roles.",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    coverImage: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=2070&auto=format&fit=crop",
+    specializations: ["JavaScript", "React", "Node.js", "TypeScript", "Frontend Architecture"],
+    experience: 9,
+    totalStudents: 18700,
+    totalCourses: 12,
+    rating: 4.9,
+    reviews: 2156,
+    social: {
+      twitter: "https://twitter.com/mrodriguez",
+      linkedin: "https://linkedin.com/in/michaelrodriguez",
+      github: "https://github.com/mrodriguez",
+      website: "https://michaelrodriguez.dev"
+    },
+    education: [
+      {
+        degree: "M.S. in Computer Science",
+        institution: "Georgia Tech",
+        year: "2014"
+      },
+      {
+        degree: "B.S. in Software Engineering",
+        institution: "University of Washington",
+        year: "2011"
+      }
+    ],
+    achievements: [
+      "Lead developer on 3 widely-used open source libraries",
+      "Speaker at ReactConf and NodeCon",
+      "Author of 'Modern React Patterns' book",
+      "Creator of the WebDevMastery online curriculum"
+    ]
+  },
+  {
+    name: "Alex Thompson",
+    title: "Cybersecurity Specialist",
+    bio: "Alex Thompson is a certified cybersecurity expert with experience in both offensive and defensive security. Having worked as a security consultant for major financial institutions and government agencies, Alex now focuses on training the next generation of security professionals. His courses combine theoretical knowledge with hands-on labs and real-world scenarios.",
+    avatar: "https://randomuser.me/api/portraits/men/55.jpg",
+    coverImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
+    specializations: ["Network Security", "Ethical Hacking", "Security Auditing", "Cryptography", "Digital Forensics"],
+    experience: 15,
+    totalStudents: 12340,
+    totalCourses: 6,
+    rating: 4.7,
+    reviews: 987,
+    social: {
+      twitter: "https://twitter.com/alextsec",
+      linkedin: "https://linkedin.com/in/alexthompson",
+      github: "https://github.com/alextsec"
+    },
+    education: [
+      {
+        degree: "M.S. in Information Security",
+        institution: "Carnegie Mellon University",
+        year: "2009"
+      },
+      {
+        degree: "B.S. in Computer Science",
+        institution: "Purdue University",
+        year: "2007"
+      }
+    ],
+    achievements: [
+      "CISSP, CEH, and OSCP certified",
+      "Former team lead at National Cybersecurity Center",
+      "Discovered and responsibly disclosed 12 critical vulnerabilities",
+      "Regular contributor to OWASP projects"
+    ]
+  }
+];
+
 export const categories = [
   'Programming',
   'Data Science',
@@ -175,4 +319,12 @@ export const getCoursesByCategory = (category: string) => {
 
 export const getCourseById = (id: string) => {
   return sampleCourses.find(course => course.id === id);
+};
+
+export const getCoursesByInstructor = (instructorName: string) => {
+  return sampleCourses.filter(course => course.instructor === instructorName);
+};
+
+export const getInstructorByName = (name: string) => {
+  return instructors.find(instructor => instructor.name === name);
 };

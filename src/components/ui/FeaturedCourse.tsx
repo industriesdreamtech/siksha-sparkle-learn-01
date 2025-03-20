@@ -66,12 +66,20 @@ export function FeaturedCourse({ course }: FeaturedCourseProps) {
               <div className="text-2xl font-medium">₹{course.inrPrice?.toLocaleString() || (course.price * 80).toLocaleString()}</div>
             </div>
             
-            <Button asChild>
-              <Link to={`/course/${course.id}`} className="group">
-                <span>View Course</span>
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
+            <div className="flex gap-2">
+              <Button asChild variant="outline" size="sm">
+                <Link to={`/instructor/${encodeURIComponent(course.instructor)}`} className="group">
+                  <span>View Instructor</span>
+                </Link>
+              </Button>
+              
+              <Button asChild>
+                <Link to={`/course/${course.id}`} className="group">
+                  <span>View Course</span>
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
