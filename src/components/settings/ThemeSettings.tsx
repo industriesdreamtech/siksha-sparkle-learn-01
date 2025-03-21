@@ -1,12 +1,13 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Check, Palette, PaintBucket, Save, Undo } from 'lucide-react';
+import { Check, Palette, PaintBucket, Save, Undo, Moon, Sun, Monitor } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 type ThemeColor = {
   name: string;
@@ -36,10 +37,21 @@ const secondaryColors: ThemeColor[] = [
   { name: 'Pink Darker', value: 'hsl(330, 81%, 50%)', tailwindClass: 'bg-pink-600' },
 ];
 
+const accentColors: ThemeColor[] = [
+  { name: 'Default', value: 'hsl(218, 29%, 62%)', tailwindClass: 'bg-[#819CBA]' },
+  { name: 'Yellow', value: 'hsl(45, 93%, 47%)', tailwindClass: 'bg-yellow-400' },
+  { name: 'Lime', value: 'hsl(85, 74%, 46%)', tailwindClass: 'bg-lime-500' },
+  { name: 'Cyan', value: 'hsl(185, 70%, 49%)', tailwindClass: 'bg-cyan-500' },
+  { name: 'Sky', value: 'hsl(194, 82%, 49%)', tailwindClass: 'bg-sky-500' },
+  { name: 'Indigo', value: 'hsl(238, 84%, 62%)', tailwindClass: 'bg-indigo-500' },
+  { name: 'Rose', value: 'hsl(330, 81%, 60%)', tailwindClass: 'bg-rose-500' },
+  { name: 'Amber', value: 'hsl(38, 92%, 50%)', tailwindClass: 'bg-amber-500' },
+];
+
 const backgroundThemes = [
-  { id: 'light', name: 'Light' },
-  { id: 'dark', name: 'Dark' },
-  { id: 'system', name: 'System' },
+  { id: 'light', name: 'Light', icon: <Sun className="h-4 w-4 mr-2" /> },
+  { id: 'dark', name: 'Dark', icon: <Moon className="h-4 w-4 mr-2" /> },
+  { id: 'system', name: 'System', icon: <Monitor className="h-4 w-4 mr-2" /> },
 ];
 
 const updateCSSVariable = (variable: string, value: string) => {
@@ -50,10 +62,22 @@ export default function ThemeSettings() {
   const [themeMode, setThemeMode] = useState('light');
   const [selectedPrimary, setSelectedPrimary] = useState(primaryColors[0]);
   const [selectedSecondary, setSelectedSecondary] = useState(secondaryColors[0]);
+  const [selectedAccent, setSelectedAccent] = useState(accentColors[0]);
   const [originalColors, setOriginalColors] = useState({
     primary: document.documentElement.style.getPropertyValue('--primary') || primaryColors[0].value,
     secondary: document.documentElement.style.getPropertyValue('--secondary') || secondaryColors[0].value,
+    accent: document.documentElement.style.getPropertyValue('--accent') || accentColors[0].value,
   });
+  const [showFullPreview, setShowFullPreview] = useState(false);
+
+  useEffect(() => {
+    // Apply dark mode class to body if theme is dark
+    if (themeMode === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [themeMode]);
 
   const handlePrimaryColorChange = (color: ThemeColor) => {
     setSelectedPrimary(color);
@@ -65,12 +89,21 @@ export default function ThemeSettings() {
     updateCSSVariable('--secondary', color.value);
   };
 
+  const handleAccentColorChange = (color: ThemeColor) => {
+    setSelectedAccent(color);
+    updateCSSVariable('--accent', color.value);
+  };
+
   const saveThemeChanges = () => {
     // In a real app, this would save to user preferences
     setOriginalColors({
       primary: selectedPrimary.value,
       secondary: selectedSecondary.value,
+      accent: selectedAccent.value,
     });
+
+    // Save theme mode preference
+    localStorage.setItem('theme', themeMode);
 
     toast({
       title: "Theme Updated",
@@ -81,8 +114,12 @@ export default function ThemeSettings() {
   const resetToDefaults = () => {
     setSelectedPrimary(primaryColors[0]);
     setSelectedSecondary(secondaryColors[0]);
+    setSelectedAccent(accentColors[0]);
+    setThemeMode('light');
     updateCSSVariable('--primary', primaryColors[0].value);
     updateCSSVariable('--secondary', secondaryColors[0].value);
+    updateCSSVariable('--accent', accentColors[0].value);
+    document.documentElement.classList.remove('dark');
     
     toast({
       title: "Theme Reset",
@@ -104,12 +141,24 @@ export default function ThemeSettings() {
             defaultValue="light" 
             value={themeMode}
             onValueChange={setThemeMode}
-            className="flex space-x-4"
+            className="grid grid-cols-3 gap-4"
           >
             {backgroundThemes.map((theme) => (
-              <div key={theme.id} className="flex items-center space-x-2">
-                <RadioGroupItem value={theme.id} id={`theme-${theme.id}`} />
-                <Label htmlFor={`theme-${theme.id}`}>{theme.name}</Label>
+              <div 
+                key={theme.id} 
+                className={cn(
+                  "flex flex-col items-center space-y-2 rounded-lg border-2 border-muted p-4 hover:border-primary hover:bg-muted/10 transition-all cursor-pointer",
+                  themeMode === theme.id && "border-primary bg-primary/5"
+                )}
+                onClick={() => setThemeMode(theme.id)}
+              >
+                <div className="flex items-center justify-center">
+                  {theme.icon}
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value={theme.id} id={`theme-${theme.id}`} className="sr-only" />
+                  <Label htmlFor={`theme-${theme.id}`} className="font-medium">{theme.name}</Label>
+                </div>
               </div>
             ))}
           </RadioGroup>
@@ -164,17 +213,92 @@ export default function ThemeSettings() {
             ))}
           </div>
         </div>
+
+        <div>
+          <h3 className="text-lg font-medium mb-4">Accent Color</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {accentColors.map((color) => (
+              <div key={color.name} className="relative">
+                <button
+                  type="button"
+                  className={cn(
+                    "w-full p-4 h-16 rounded-md border border-input hover:border-primary/50 transition-all",
+                    color.tailwindClass,
+                    selectedAccent.name === color.name && "ring-2 ring-primary ring-offset-2"
+                  )}
+                  onClick={() => handleAccentColorChange(color)}
+                  aria-label={`Select ${color.name} as accent color`}
+                >
+                  {selectedAccent.name === color.name && (
+                    <Check className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white h-6 w-6" />
+                  )}
+                </button>
+                <p className="text-xs text-center mt-1">{color.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
         
         <div className="p-6 bg-background border border-border rounded-lg">
-          <h3 className="text-lg font-medium mb-4">Preview</h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-medium">Preview</h3>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline" size="sm" onClick={() => setShowFullPreview(true)}>
+                  Full Preview
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-full sm:max-w-md">
+                <SheetHeader>
+                  <SheetTitle>Theme Preview</SheetTitle>
+                  <SheetDescription>
+                    See how your selected theme looks with various UI components
+                  </SheetDescription>
+                </SheetHeader>
+                <div className="mt-6 space-y-6">
+                  <Card className="p-4">
+                    <h4 className="font-medium mb-2">Card Component</h4>
+                    <p className="text-sm text-muted-foreground mb-4">This is how card content will appear.</p>
+                    <Button size="sm">Action Button</Button>
+                  </Card>
+                  
+                  <div className="space-y-2">
+                    <h4 className="font-medium">Typography</h4>
+                    <div className="space-y-1">
+                      <p className="text-2xl font-display">Heading Text</p>
+                      <p className="text-muted-foreground">Paragraph text in muted color</p>
+                      <p>Regular paragraph text</p>
+                      <p className="text-sm">Small text</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <h4 className="font-medium">Form Elements</h4>
+                    <div className="grid gap-2">
+                      <Label htmlFor="preview-input">Input Field</Label>
+                      <input 
+                        id="preview-input" 
+                        className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors focus:outline-none focus:ring-1 focus:ring-primary" 
+                        placeholder="Input text" 
+                      />
+                    </div>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
           <div className="space-y-3">
-            <div className="flex space-x-3">
+            <div className="flex flex-wrap gap-3">
               <Button>Primary Button</Button>
               <Button variant="secondary">Secondary Button</Button>
               <Button variant="outline">Outline Button</Button>
+              <Button variant="destructive">Destructive</Button>
             </div>
             <div className="p-4 bg-card border border-border rounded-lg">
               This is how card components will appear with your selected theme.
+            </div>
+            <div className="p-4 bg-muted rounded-lg">
+              This is text on a muted background.
             </div>
           </div>
         </div>
