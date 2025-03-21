@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Sparkles, Users, Award, BarChart3, Play, Star, ChevronRight, Search, Lightning, Zap, TrendingUp, BrainCircuit, Code } from 'lucide-react';
+import { ArrowRight, BookOpen, Sparkles, Users, Award, BarChart3, Play, Star, ChevronRight, Search, Zap, TrendingUp, BrainCircuit, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CategoryFilter } from '@/components/ui/CategoryFilter';
 import { CourseCard } from '@/components/ui/CourseCard';
@@ -327,7 +327,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-12">
             <div className="mb-6 md:mb-0">
               <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium bg-secondary/80 text-primary mb-2">
-                <Lightning className="h-3 w-3 mr-1 text-primary" />
+                <Zap className="h-3 w-3 mr-1 text-primary" />
                 <span>Trending Paths</span>
               </div>
               <h2 className="font-display text-3xl font-medium mb-2">Structured Learning Paths</h2>

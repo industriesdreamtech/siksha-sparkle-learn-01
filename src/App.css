@@ -54,16 +54,25 @@
   [data-drawer="chat-drawer"] {
     width: 100% !important;
     max-width: 100% !important;
+    height: 90vh !important;
+    bottom: 0 !important;
+    border-radius: 1rem 1rem 0 0 !important;
   }
   
   [data-drawer="chat-content"] {
     width: 100% !important;
     padding: 0.75rem !important;
+    max-height: calc(90vh - 4rem) !important;
+    overflow-y: auto !important;
   }
   
   [data-drawer="chat-input"] {
     width: 100% !important;
     max-width: 100% !important;
+    padding: 0.75rem !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    background-color: var(--background) !important;
   }
 }
 
@@ -90,12 +99,42 @@
   }
 }
 
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToTop {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
 .slide-in-right {
   animation: slideInFromRight 0.3s forwards;
 }
 
 .slide-out-right {
   animation: slideOutToRight 0.3s forwards;
+}
+
+.slide-in-top {
+  animation: slideInFromTop 0.3s forwards;
+}
+
+.slide-out-top {
+  animation: slideOutToTop 0.3s forwards;
 }
 
 /* Typing animation */
@@ -159,15 +198,127 @@
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.25rem !important;
+    line-height: 1.2 !important;
   }
   
   h2 {
-    font-size: 2rem;
+    font-size: 1.75rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  p {
+    font-size: 1rem !important;
   }
   
   .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
+  
+  section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  
+  .card, .bg-card {
+    padding: 1rem !important;
+  }
+  
+  /* Ensure text is readable and visible */
+  .text-muted-foreground {
+    color: rgba(var(--foreground), 0.8) !important;
+  }
+  
+  /* Fix button visibility and sizing */
+  button, .button {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem !important;
+    min-height: 2.5rem !important;
+    white-space: nowrap !important;
+  }
+  
+  /* Fix gap sizes for mobile */
+  .gap-4 {
+    gap: 0.75rem !important;
+  }
+  
+  .gap-6, .gap-8 {
+    gap: 1rem !important;
+  }
+  
+  /* Ensure tab visibility */
+  [role="tab"] {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Fix layout issues when components overlap */
+.z-50 {
+  z-index: 50 !important;
+}
+
+.z-40 {
+  z-index: 40 !important;
+}
+
+/* Ensure text visibility on all backgrounds */
+.text-shadow {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.dark .text-shadow {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Fix any layout issues to prevent content clipping */
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+.overflow-y-auto {
+  overflow-y: auto !important;
+}
+
+/* Ensure buttons and interactive elements have proper hit targets */
+button, [role="button"], a {
+  cursor: pointer !important;
+  touch-action: manipulation !important;
+}
+
+@media (hover: none) {
+  button:hover, [role="button"]:hover, a:hover {
+    /* Remove hover effects on touch devices */
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Ensure form elements are properly sized for touch */
+input, select, textarea {
+  font-size: 16px !important; /* Prevents iOS zoom on focus */
+}
+
+/* Improve contrast ratios for accessibility */
+.text-primary {
+  color: hsl(var(--primary)) !important;
+  font-weight: 600 !important;
+}
+
+/* Ensure proper spacing in layout components */
+.layout {
+  min-height: 100vh !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Ensure proper spacing for tab content */
+[role="tabpanel"] {
+  padding: 1rem !important;
 }
