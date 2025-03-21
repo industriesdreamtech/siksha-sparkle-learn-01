@@ -16,7 +16,7 @@ export function Layout({ children }: LayoutProps) {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.documentElement.classList.add('dark');
-    } else if (savedTheme === 'light') {
+    } else {
       document.documentElement.classList.remove('dark');
     }
     setMounted(true);
@@ -39,9 +39,9 @@ export function Layout({ children }: LayoutProps) {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background layout">
+    <div className="flex flex-col min-h-screen bg-background">
       <Navbar />
-      <main className={`flex-1 pt-16 md:pt-20 ${isLoading ? 'opacity-0' : 'animate-fade-in opacity-100'}`} style={{ transition: 'opacity 0.3s ease-in-out' }}>
+      <main className={`flex-1 pt-16 transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
         {children}
       </main>
       <Footer />

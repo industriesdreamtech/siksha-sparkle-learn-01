@@ -76,134 +76,34 @@
   }
 }
 
-/* Slide animations */
-@keyframes slideInFromRight {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+/* Basic animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@keyframes slideOutToRight {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
-@keyframes slideInFromTop {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
 }
 
-@keyframes slideOutToTop {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-}
-
-.slide-in-right {
-  animation: slideInFromRight 0.3s forwards;
-}
-
-.slide-out-right {
-  animation: slideOutToRight 0.3s forwards;
-}
-
-.slide-in-top {
-  animation: slideInFromTop 0.3s forwards;
-}
-
-.slide-out-top {
-  animation: slideOutToTop 0.3s forwards;
-}
-
-/* Typing animation */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-.typing-animation {
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 3.5s steps(40, end);
-}
-
-/* Gradient Background */
-.bg-grid-black {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-}
-
-.bg-grid-white {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-}
-
-/* Animations */
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-.floating {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes pulse-slow {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.6;
-  }
-}
-
-.pulse-slow {
-  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.slide-in {
+  animation: slideIn 0.3s ease-in-out forwards;
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   h1 {
-    font-size: 2.25rem !important;
+    font-size: 2rem !important;
     line-height: 1.2 !important;
   }
   
   h2 {
-    font-size: 1.75rem !important;
+    font-size: 1.5rem !important;
     line-height: 1.3 !important;
   }
   
@@ -221,62 +121,16 @@
   }
   
   section {
-    padding-top: 2.5rem !important;
-    padding-bottom: 2.5rem !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
   }
   
   .card, .bg-card {
     padding: 1rem !important;
   }
-  
-  /* Ensure text is readable and visible */
-  .text-muted-foreground {
-    color: rgba(var(--foreground), 0.8) !important;
-  }
-  
-  /* Fix button visibility and sizing */
-  button, .button {
-    padding: 0.5rem 1rem !important;
-    font-size: 0.875rem !important;
-    min-height: 2.5rem !important;
-    white-space: nowrap !important;
-  }
-  
-  /* Fix gap sizes for mobile */
-  .gap-4 {
-    gap: 0.75rem !important;
-  }
-  
-  .gap-6, .gap-8 {
-    gap: 1rem !important;
-  }
-  
-  /* Ensure tab visibility */
-  [role="tab"] {
-    padding: 0.5rem 0.75rem !important;
-    font-size: 0.875rem !important;
-  }
 }
 
-/* Fix layout issues when components overlap */
-.z-50 {
-  z-index: 50 !important;
-}
-
-.z-40 {
-  z-index: 40 !important;
-}
-
-/* Ensure text visibility on all backgrounds */
-.text-shadow {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.dark .text-shadow {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-/* Fix any layout issues to prevent content clipping */
+/* Fix any layout issues */
 .overflow-hidden {
   overflow: hidden !important;
 }
@@ -285,37 +139,43 @@
   overflow-y: auto !important;
 }
 
-/* Ensure buttons and interactive elements have proper hit targets */
-button, [role="button"], a {
-  cursor: pointer !important;
-  touch-action: manipulation !important;
-}
-
-@media (hover: none) {
-  button:hover, [role="button"]:hover, a:hover {
-    /* Remove hover effects on touch devices */
-    transform: none !important;
-    box-shadow: none !important;
-  }
-}
-
-/* Ensure form elements are properly sized for touch */
-input, select, textarea {
-  font-size: 16px !important; /* Prevents iOS zoom on focus */
-}
-
-/* Improve contrast ratios for accessibility */
-.text-primary {
-  color: hsl(var(--primary)) !important;
-  font-weight: 600 !important;
-}
-
 /* Ensure proper spacing in layout components */
 .layout {
   min-height: 100vh !important;
   width: 100% !important;
   max-width: 100% !important;
   overflow-x: hidden !important;
+}
+
+/* Simple nav animations */
+.nav-item {
+  position: relative;
+}
+
+.nav-item:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover:after {
+  width: 100%;
+}
+
+/* Clean subtle box shadows */
+.shadow-soft {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Fix button visibility and sizing */
+button, .button {
+  padding: 0.5rem 1rem !important;
+  min-height: 2.5rem !important;
 }
 
 /* Ensure proper spacing for tab content */
