@@ -5,6 +5,7 @@ import { ArrowRight, Clock, Users, BookOpen, Star } from 'lucide-react';
 import { Course } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface FeaturedCourseProps {
   course: Course;
@@ -12,6 +13,7 @@ interface FeaturedCourseProps {
 
 export function FeaturedCourse({ course }: FeaturedCourseProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <div className="group relative bg-gradient-to-br from-primary/5 to-transparent rounded-2xl overflow-hidden border border-primary/10 p-1">
@@ -39,52 +41,54 @@ export function FeaturedCourse({ course }: FeaturedCourseProps) {
         </div>
         
         {/* Content */}
-        <div className="relative md:w-1/2 p-6 md:p-8 flex flex-col justify-center">
-          <Badge className="inline-flex w-fit mb-4 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
+        <div className="relative md:w-1/2 p-4 md:p-8 flex flex-col justify-center">
+          <Badge className="inline-flex w-fit mb-3 md:mb-4 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
             Featured Course
           </Badge>
           
-          <h2 className="font-display text-2xl md:text-3xl font-medium mb-3 leading-tight text-balance">
+          <h2 className="font-display text-xl md:text-3xl font-medium mb-2 md:mb-3 leading-tight text-balance">
             {course.title}
           </h2>
           
-          <p className="text-muted-foreground mb-5">
+          <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-5 line-clamp-2 md:line-clamp-none">
             {course.description}
           </p>
           
-          <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-4 md:mb-6 text-xs md:text-sm text-muted-foreground">
             <div className="flex items-center">
-              <Clock className="h-4 w-4 mr-1.5" />
+              <Clock className="h-3 w-3 md:h-4 md:w-4 mr-1" />
               <span>{course.duration}</span>
             </div>
             <div className="flex items-center">
-              <BookOpen className="h-4 w-4 mr-1.5" />
+              <BookOpen className="h-3 w-3 md:h-4 md:w-4 mr-1" />
               <span>{course.lessons} lessons</span>
             </div>
             <div className="flex items-center">
-              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 mr-1.5" />
+              <Star className="h-3 w-3 md:h-4 md:w-4 fill-yellow-400 text-yellow-400 mr-1" />
               <span>{course.rating.toFixed(1)} ({course.students.toLocaleString()} students)</span>
             </div>
           </div>
           
-          <div className="mt-auto flex items-center justify-between">
+          <div className="mt-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div>
-              <div className="text-sm text-muted-foreground">Price</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Price</div>
               {course.isFree ? (
-                <div className="text-2xl font-medium text-green-600">Free</div>
+                <div className="text-lg md:text-2xl font-medium text-green-600">Free</div>
               ) : (
-                <div className="text-2xl font-medium">₹{course.inrPrice?.toLocaleString() || (course.price * 80).toLocaleString()}</div>
+                <div className="text-lg md:text-2xl font-medium">₹{course.inrPrice?.toLocaleString() || (course.price * 80).toLocaleString()}</div>
               )}
             </div>
             
-            <div className="flex gap-2">
-              <Button asChild variant="outline" size="sm">
-                <Link to={`/instructor/${encodeURIComponent(course.instructor)}`} className="group">
-                  <span>View Instructor</span>
-                </Link>
-              </Button>
+            <div className="flex gap-2 w-full sm:w-auto">
+              {!isMobile && (
+                <Button asChild variant="outline" size="sm">
+                  <Link to={`/instructor/${encodeURIComponent(course.instructor)}`} className="group">
+                    <span>View Instructor</span>
+                  </Link>
+                </Button>
+              )}
               
-              <Button asChild>
+              <Button asChild className={isMobile ? "w-full" : ""}>
                 <Link to={`/course/${course.id}`} className="group">
                   <span>View Course</span>
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
