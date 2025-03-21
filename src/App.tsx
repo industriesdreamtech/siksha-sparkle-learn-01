@@ -14,6 +14,7 @@ import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
 import { ChatbotDrawer } from "./components/chat/ChatbotDrawer";
 import Community from "./pages/Community";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
