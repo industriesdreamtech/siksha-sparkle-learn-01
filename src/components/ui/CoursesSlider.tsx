@@ -1,19 +1,21 @@
 
 import { useState, useRef, useEffect } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { FeaturedCourse } from "@/components/ui/FeaturedCourse";
 import { CourseCard } from "@/components/ui/CourseCard";
-import { Course } from "@/lib/data";
+import { Course, Instructor } from "@/lib/data";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { TutorCard } from "@/components/ui/TutorCard";
 
 interface CoursesSliderProps {
   title: string;
   subtitle?: string;
-  courses: Course[];
+  courses?: Course[];
+  instructors?: Instructor[];
   viewAllLink?: string;
-  variant?: "featured" | "regular";
+  variant?: "featured" | "regular" | "tutors";
   badgeText?: string;
   badgeIcon?: React.ReactNode;
 }
@@ -21,7 +23,8 @@ interface CoursesSliderProps {
 export function CoursesSlider({
   title,
   subtitle,
-  courses,
+  courses = [],
+  instructors = [],
   viewAllLink,
   variant = "regular",
   badgeText,
@@ -37,9 +40,13 @@ export function CoursesSlider({
     setCanScrollNext(api.canScrollNext());
   };
   
-  // Limit visible courses for better carousel performance
-  const visibleCourses = courses.slice(0, 20);
-  const totalCourses = courses.length;
+  // Determine which data to use
+  const isInstructorView = variant === "tutors";
+  const items = isInstructorView ? instructors : courses;
+  
+  // Limit visible items for better carousel performance
+  const visibleItems = items.slice(0, 20);
+  const totalItems = items.length;
   
   return (
     <div className="w-full">
@@ -53,9 +60,9 @@ export function CoursesSlider({
           )}
           <h2 className="font-display text-3xl font-medium mb-2">{title}</h2>
           {subtitle && <p className="text-muted-foreground">{subtitle}</p>}
-          {totalCourses > 20 && (
+          {totalItems > 20 && (
             <p className="text-xs text-muted-foreground mt-1">
-              Showing {visibleCourses.length} of {totalCourses} courses
+              Showing {visibleItems.length} of {totalItems} {isInstructorView ? 'tutors' : 'courses'}
             </p>
           )}
         </div>
@@ -82,7 +89,7 @@ export function CoursesSlider({
               </Button>
             </>
           )}
-          {viewAllLink && totalCourses > visibleCourses.length && (
+          {viewAllLink && totalItems > visibleItems.length && (
             <Button variant="outline" asChild className="ml-2">
               <a href={viewAllLink}>
                 View All
@@ -101,18 +108,31 @@ export function CoursesSlider({
         onScrollProgress={handleScrollProgress}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
-          {visibleCourses.map((course) => (
-            <CarouselItem 
-              key={course.id} 
-              className={isMobile ? "pl-2 basis-full" : "pl-4 md:basis-1/2 lg:basis-1/3"}
-            >
-              {variant === "featured" ? (
-                <FeaturedCourse course={course} />
-              ) : (
-                <CourseCard course={course} />
-              )}
-            </CarouselItem>
-          ))}
+          {isInstructorView ? (
+            // Render instructors
+            visibleItems.map((instructor: Instructor) => (
+              <CarouselItem 
+                key={instructor.name} 
+                className={isMobile ? "pl-2 basis-full" : "pl-4 md:basis-1/2 lg:basis-1/4"}
+              >
+                <TutorCard instructor={instructor} />
+              </CarouselItem>
+            ))
+          ) : (
+            // Render courses
+            visibleItems.map((course: Course) => (
+              <CarouselItem 
+                key={course.id} 
+                className={isMobile ? "pl-2 basis-full" : "pl-4 md:basis-1/2 lg:basis-1/3"}
+              >
+                {variant === "featured" ? (
+                  <FeaturedCourse course={course} />
+                ) : (
+                  <CourseCard course={course} />
+                )}
+              </CarouselItem>
+            ))
+          )}
         </CarouselContent>
         
         {!isMobile && (
@@ -133,7 +153,7 @@ export function CoursesSlider({
         <div className="mt-8 text-center">
           <Button variant="outline" asChild>
             <a href={viewAllLink}>
-              View All {title} ({totalCourses})
+              View All {title} ({totalItems})
             </a>
           </Button>
         </div>
