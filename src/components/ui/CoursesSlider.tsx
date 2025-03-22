@@ -37,6 +37,9 @@ export function CoursesSlider({
     setCanScrollNext(api.canScrollNext());
   };
   
+  // Limit visible courses for better performance
+  const visibleCourses = courses.slice(0, 20);
+  
   return (
     <div className="w-full">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
@@ -50,6 +53,30 @@ export function CoursesSlider({
           <h2 className="font-display text-3xl font-medium mb-2">{title}</h2>
           {subtitle && <p className="text-muted-foreground">{subtitle}</p>}
         </div>
+        <div className="flex gap-2 mt-4 md:mt-0">
+          {!isMobile && (
+            <>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="rounded-full" 
+                disabled={!canScrollPrev}
+                onClick={() => document.querySelector('.embla__prev')?.dispatchEvent(new Event('click'))}
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="rounded-full" 
+                disabled={!canScrollNext}
+                onClick={() => document.querySelector('.embla__next')?.dispatchEvent(new Event('click'))}
+              >
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </>
+          )}
+        </div>
       </div>
       
       <Carousel
@@ -61,7 +88,7 @@ export function CoursesSlider({
         onScrollProgress={handleScrollProgress}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
-          {courses.map((course) => (
+          {visibleCourses.map((course) => (
             <CarouselItem 
               key={course.id} 
               className={isMobile ? "pl-2 basis-full" : "pl-4 md:basis-1/2 lg:basis-1/3"}
@@ -78,11 +105,11 @@ export function CoursesSlider({
         {!isMobile && (
           <>
             <CarouselPrevious
-              className="absolute -left-12 md:-left-6"
+              className="absolute -left-12 md:-left-6 embla__prev"
               disabled={!canScrollPrev}
             />
             <CarouselNext
-              className="absolute -right-12 md:-right-6"
+              className="absolute -right-12 md:-right-6 embla__next"
               disabled={!canScrollNext}
             />
           </>

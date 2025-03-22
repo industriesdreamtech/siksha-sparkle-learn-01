@@ -542,24 +542,89 @@ export const sampleCourses: Course[] = [
   }
 ];
 
-export const getFeaturedCourses = () => {
-  return sampleCourses.filter(course => course.featured);
-};
-
-export const getCoursesByCategory = (category: string) => {
-  return category === 'All' 
-    ? sampleCourses 
-    : sampleCourses.filter(course => course.category === category);
-};
-
-export const getCourseById = (id: string) => {
-  return sampleCourses.find(course => course.id === id);
-};
-
-export const getCoursesByInstructor = (instructorName: string) => {
-  return sampleCourses.filter(course => course.instructor === instructorName);
-};
-
-export const getInstructorByName = (name: string) => {
-  return instructors.find(instructor => instructor.name === name);
-};
+// Additional courses by category
+const programmingCourses: Course[] = [
+  {
+    id: 'prog-1',
+    title: 'Python Programming Masterclass',
+    instructor: 'Michael Rodriguez',
+    description: 'Master Python programming from basics to advanced concepts with practical projects and real-world applications.',
+    price: 79.99,
+    inrPrice: 6599,
+    image: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=2070&auto=format&fit=crop',
+    category: 'Programming',
+    level: 'Beginner',
+    duration: '10 weeks',
+    lessons: 45,
+    rating: 4.8,
+    students: 12500,
+    tags: ['Python', 'Programming', 'Data Structures', 'Algorithms']
+  },
+  {
+    id: 'prog-2',
+    title: 'Java Development Bootcamp',
+    instructor: 'Alex Thompson',
+    description: 'Comprehensive Java programming course covering core concepts, OOP, collections, multithreading, and building enterprise applications.',
+    price: 89.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=2070&auto=format&fit=crop',
+    category: 'Programming',
+    level: 'Intermediate',
+    duration: '12 weeks',
+    lessons: 52,
+    rating: 4.7,
+    students: 9320,
+    tags: ['Java', 'Spring', 'OOP', 'Enterprise']
+  },
+  {
+    id: 'prog-3',
+    title: 'C++ for Game Development',
+    instructor: 'Dr. Sarah Chen',
+    description: 'Learn C++ programming with a focus on game development concepts, performance optimization, and building simple game engines.',
+    price: 94.99,
+    inrPrice: 7899,
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop',
+    category: 'Programming',
+    level: 'Advanced',
+    duration: '14 weeks',
+    lessons: 58,
+    rating: 4.9,
+    students: 6430,
+    tags: ['C++', 'Game Development', 'Performance', 'Algorithms']
+  },
+  {
+    id: 'prog-4',
+    title: 'Golang Essential Training',
+    instructor: 'Raj Patel',
+    description: 'Master the Go programming language and its core concepts like concurrency, channels, and performance optimization techniques.',
+    price: 74.99,
+    inrPrice: 6249,
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2070&auto=format&fit=crop',
+    category: 'Programming',
+    level: 'Intermediate',
+    duration: '8 weeks',
+    lessons: 36,
+    rating: 4.7,
+    students: 5250,
+    tags: ['Go', 'Concurrency', 'Backend', 'Performance']
+  },
+  {
+    id: 'prog-5',
+    title: 'Rust Programming for System Developers',
+    instructor: 'Dr. Priya Sharma',
+    description: 'Explore Rust programming for systems development with focus on memory safety, performance, and building robust applications.',
+    price: 99.99,
+    inrPrice: 8299,
+    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2070&auto=format&fit=crop',
+    category: 'Programming',
+    level: 'Advanced',
+    duration: '10 weeks',
+    lessons: 42,
+    rating: 4.9,
+    students: 3840,
+    tags: ['Rust', 'Systems Programming', 'Memory Safety', 'Performance']
+  },
+  {
+    id: 'prog-6',
+    title: 'TypeScript for Modern Web Development',
+    instructor: 'Michael Rodriguez
