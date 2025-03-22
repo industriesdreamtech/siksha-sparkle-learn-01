@@ -633,4 +633,394 @@ export const cybersecurityCourses: Course[] = [
     description: 'Understand the critical concepts of information security and learn how to protect systems and networks from cyber threats. This course covers encryption, network security, ethical hacking, and security policies.',
     price: 94.99,
     inrPrice: 7899,
-    image: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-
+    image: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Beginner',
+    duration: '8 weeks',
+    lessons: 36,
+    rating: 4.7,
+    students: 9850,
+    tags: ['Network Security', 'Encryption', 'Security Policies', 'Cyber Threats']
+  },
+  {
+    id: 'cyber-2',
+    title: 'Ethical Hacking and Penetration Testing',
+    instructor: 'Alex Thompson',
+    description: 'Learn professional ethical hacking techniques and methodologies used by security experts to identify and fix vulnerabilities. Practice with real-world penetration testing tools and scenarios.',
+    price: 99.99,
+    inrPrice: 8299,
+    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Intermediate',
+    duration: '10 weeks',
+    lessons: 42,
+    rating: 4.9,
+    students: 7240,
+    tags: ['Ethical Hacking', 'Penetration Testing', 'Security Assessment', 'Vulnerability Analysis']
+  },
+  {
+    id: 'cyber-3',
+    title: 'CompTIA Security+ Certification Prep',
+    instructor: 'Alex Thompson',
+    description: 'Comprehensive preparation for the CompTIA Security+ certification exam. Master all exam objectives with hands-on labs, practice tests, and expert guidance.',
+    price: 84.99,
+    inrPrice: 7099,
+    image: 'https://images.unsplash.com/photo-1510511459019-5dda7724fd87?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Beginner',
+    duration: '6 weeks',
+    lessons: 30,
+    rating: 4.8,
+    students: 12450,
+    tags: ['CompTIA', 'Security+', 'Certification', 'IT Security']
+  },
+  {
+    id: 'cyber-4',
+    title: 'Network Security Fundamentals',
+    instructor: 'Alex Thompson',
+    description: 'Learn how to secure networks against unauthorized access, misuse, and attacks. Topics include firewall configuration, VPNs, intrusion detection systems, and secure network architecture.',
+    price: 79.99,
+    inrPrice: 6599,
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Intermediate',
+    duration: '8 weeks',
+    lessons: 38,
+    rating: 4.7,
+    students: 8320,
+    tags: ['Network Security', 'Firewalls', 'VPN', 'IDS/IPS']
+  },
+  {
+    id: 'cyber-5',
+    title: 'Advanced Malware Analysis',
+    instructor: 'Alex Thompson',
+    description: 'Develop skills to analyze and reverse engineer malware to understand its functionality, behavior, and potential impact. Learn advanced techniques for static and dynamic malware analysis.',
+    price: 104.99,
+    inrPrice: 8699,
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '12 weeks',
+    lessons: 45,
+    rating: 4.9,
+    students: 5160,
+    tags: ['Malware Analysis', 'Reverse Engineering', 'Threat Intelligence', 'Security Research']
+  },
+  {
+    id: 'cyber-6',
+    title: 'Cloud Security Fundamentals',
+    instructor: 'Raj Patel',
+    description: 'Learn how to secure cloud environments including AWS, Azure, and Google Cloud. Understand shared responsibility models, identity management, and data protection in the cloud.',
+    price: 89.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Intermediate',
+    duration: '8 weeks',
+    lessons: 36,
+    rating: 4.7,
+    students: 6840,
+    tags: ['Cloud Security', 'AWS', 'Azure', 'Cloud Computing']
+  },
+  {
+    id: 'cyber-7',
+    title: 'Secure Coding Practices',
+    instructor: 'Michael Rodriguez',
+    description: 'Learn how to write secure code and integrate security into the development lifecycle. Covers common vulnerabilities, secure coding standards, and security testing techniques.',
+    price: 84.99,
+    inrPrice: 7099,
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Intermediate',
+    duration: '7 weeks',
+    lessons: 32,
+    rating: 4.8,
+    students: 7250,
+    tags: ['Secure Coding', 'OWASP', 'Web Security', 'DevSecOps']
+  },
+  {
+    id: 'cyber-8',
+    title: 'Digital Forensics Investigation',
+    instructor: 'Alex Thompson',
+    description: 'Master the techniques and tools used in digital forensics to investigate cybersecurity incidents. Learn evidence collection, analysis, and reporting procedures.',
+    price: 94.99,
+    inrPrice: 7899,
+    image: 'https://images.unsplash.com/photo-1633265486501-b60b6b30043b?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '10 weeks',
+    lessons: 40,
+    rating: 4.8,
+    students: 5980,
+    tags: ['Digital Forensics', 'Incident Response', 'Evidence Collection', 'Computer Forensics']
+  },
+  {
+    id: 'cyber-9',
+    title: 'CISSP Certification Preparation',
+    instructor: 'Alex Thompson',
+    description: 'Comprehensive preparation for the CISSP certification exam. Covers all eight domains of the CISSP Common Body of Knowledge (CBK) with practice questions and scenario-based exercises.',
+    price: 109.99,
+    inrPrice: 9199,
+    image: 'https://images.unsplash.com/photo-1496096265110-f83ad7f96608?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '14 weeks',
+    lessons: 56,
+    rating: 4.9,
+    students: 8540,
+    tags: ['CISSP', 'Certification', 'Information Security', 'Risk Management']
+  },
+  {
+    id: 'cyber-10',
+    title: 'Mobile Application Security',
+    instructor: 'Michael Rodriguez',
+    description: 'Learn how to identify and mitigate security vulnerabilities in mobile applications. Covers both Android and iOS platforms, with hands-on testing and secure development practices.',
+    price: 89.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Intermediate',
+    duration: '9 weeks',
+    lessons: 38,
+    rating: 4.7,
+    students: 6470,
+    tags: ['Mobile Security', 'Android', 'iOS', 'App Penetration Testing']
+  }
+];
+
+export const businessCourses: Course[] = [
+  {
+    id: 'business-1',
+    title: 'Business Leadership and Management',
+    instructor: 'Raj Patel',
+    description: 'Develop essential leadership and management skills to effectively lead teams and organizations. Learn strategic thinking, decision-making, and people management techniques.',
+    price: 89.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop',
+    category: 'Business',
+    level: 'Intermediate',
+    duration: '8 weeks',
+    lessons: 36,
+    rating: 4.8,
+    students: 8540,
+    tags: ['Leadership', 'Management', 'Team Building', 'Strategic Thinking']
+  },
+  {
+    id: 'business-2',
+    title: 'Financial Management for Entrepreneurs',
+    instructor: 'Ananya Desai',
+    description: 'Learn essential financial management skills for startup founders and small business owners. Covers financial planning, budgeting, cash flow management, and investment decisions.',
+    price: 79.99,
+    inrPrice: 6699,
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop',
+    category: 'Business',
+    level: 'Beginner',
+    duration: '6 weeks',
+    lessons: 30,
+    rating: 4.7,
+    students: 7250,
+    tags: ['Finance', 'Entrepreneurship', 'Cash Flow', 'Investment']
+  },
+  {
+    id: 'business-3',
+    title: 'Strategic Business Planning',
+    instructor: 'Raj Patel',
+    description: 'Develop comprehensive business strategies to achieve long-term goals. Learn how to conduct market analysis, identify competitive advantages, and create actionable strategic plans.',
+    price: 94.99,
+    inrPrice: 7899,
+    image: 'https://images.unsplash.com/photo-1572021335469-31706a17aaef?q=80&w=2070&auto=format&fit=crop',
+    category: 'Business',
+    level: 'Advanced',
+    duration: '10 weeks',
+    lessons: 42,
+    rating: 4.9,
+    students: 6840,
+    tags: ['Strategy', 'Business Planning', 'Market Analysis', 'Competitive Analysis']
+  }
+];
+
+export const marketingCourses: Course[] = [
+  {
+    id: 'marketing-1',
+    title: 'Social Media Marketing Mastery',
+    instructor: 'Ananya Desai',
+    description: 'Master social media marketing strategies across multiple platforms. Learn content creation, community management, paid advertising, and performance analytics.',
+    price: 74.99,
+    inrPrice: 6249,
+    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=2074&auto=format&fit=crop',
+    category: 'Marketing',
+    level: 'Intermediate',
+    duration: '7 weeks',
+    lessons: 35,
+    rating: 4.8,
+    students: 10240,
+    tags: ['Social Media', 'Content Marketing', 'Facebook', 'Instagram', 'LinkedIn']
+  },
+  {
+    id: 'marketing-2',
+    title: 'SEO and Content Marketing',
+    instructor: 'Ananya Desai',
+    description: 'Learn how to drive organic traffic through search engine optimization and content marketing. Master keyword research, on-page SEO, link building, and content strategy.',
+    price: 79.99,
+    inrPrice: 6699,
+    image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8f5a70d?q=80&w=2074&auto=format&fit=crop',
+    category: 'Marketing',
+    level: 'Beginner',
+    duration: '8 weeks',
+    lessons: 40,
+    rating: 4.7,
+    students: 8650,
+    tags: ['SEO', 'Content Marketing', 'Keyword Research', 'Link Building']
+  },
+  {
+    id: 'marketing-3',
+    title: 'Email Marketing Strategies',
+    instructor: 'Ananya Desai',
+    description: 'Master email marketing from list building to automation and analytics. Learn to create effective campaigns that drive engagement, conversions, and customer loyalty.',
+    price: 69.99,
+    inrPrice: 5899,
+    image: 'https://images.unsplash.com/photo-1526297003708-f5a6b2b6c009?q=80&w=2071&auto=format&fit=crop',
+    category: 'Marketing',
+    level: 'Intermediate',
+    duration: '6 weeks',
+    lessons: 30,
+    rating: 4.6,
+    students: 7420,
+    tags: ['Email Marketing', 'Automation', 'Conversion', 'Lead Nurturing']
+  }
+];
+
+export const cryptocurrencyCourses: Course[] = [
+  {
+    id: 'crypto-1',
+    title: 'Cryptocurrency Trading Strategies',
+    instructor: 'Alex Thompson',
+    description: 'Learn professional trading strategies for cryptocurrency markets. Covers technical analysis, risk management, and portfolio diversification techniques.',
+    price: 94.99,
+    inrPrice: 7899,
+    image: 'https://images.unsplash.com/photo-1625014412624-fefb0856fa9b?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cryptocurrency',
+    level: 'Intermediate',
+    duration: '8 weeks',
+    lessons: 36,
+    rating: 4.7,
+    students: 8540,
+    tags: ['Trading', 'Technical Analysis', 'Risk Management', 'Bitcoin', 'Ethereum']
+  },
+  {
+    id: 'crypto-2',
+    title: 'DeFi: Decentralized Finance Fundamentals',
+    instructor: 'Alex Thompson',
+    description: 'Understand decentralized finance applications and protocols. Learn about lending, borrowing, staking, yield farming, and other DeFi mechanisms.',
+    price: 89.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1645386092949-37342cdb4ed5?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cryptocurrency',
+    level: 'Intermediate',
+    duration: '7 weeks',
+    lessons: 32,
+    rating: 4.8,
+    students: 6740,
+    tags: ['DeFi', 'Smart Contracts', 'Yield Farming', 'Staking', 'Liquidity Mining']
+  },
+  {
+    id: 'crypto-3',
+    title: 'NFTs and Digital Asset Creation',
+    instructor: 'Ananya Desai',
+    description: 'Learn how to create, mint, and sell NFTs (Non-Fungible Tokens). Understand NFT marketplaces, digital art creation, and blockchain integration for digital assets.',
+    price: 84.99,
+    inrPrice: 7099,
+    image: 'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?q=80&w=2074&auto=format&fit=crop',
+    category: 'Cryptocurrency',
+    level: 'Beginner',
+    duration: '6 weeks',
+    lessons: 28,
+    rating: 4.6,
+    students: 5920,
+    tags: ['NFT', 'Digital Art', 'Blockchain', 'Marketplaces', 'Minting']
+  }
+];
+
+export const excelCourses: Course[] = [
+  {
+    id: 'excel-1',
+    title: 'Excel Data Analysis and Visualization',
+    instructor: 'Raj Patel',
+    description: 'Master data analysis in Excel using advanced functions, pivot tables, and powerful visualization techniques. Learn to transform raw data into meaningful insights.',
+    price: 69.99,
+    inrPrice: 5899,
+    image: 'https://images.unsplash.com/photo-1589330694146-d48dd159e11a?q=80&w=2070&auto=format&fit=crop',
+    category: 'Excel',
+    level: 'Intermediate',
+    duration: '6 weeks',
+    lessons: 30,
+    rating: 4.8,
+    students: 12450,
+    tags: ['Excel', 'Data Analysis', 'Visualization', 'Pivot Tables', 'Charts']
+  },
+  {
+    id: 'excel-2',
+    title: 'Excel VBA and Macros',
+    instructor: 'Michael Rodriguez',
+    description: 'Learn to automate Excel tasks using VBA programming and macros. Create custom functions, automate repetitive tasks, and build interactive dashboards and tools.',
+    price: 84.99,
+    inrPrice: 7099,
+    image: 'https://images.unsplash.com/photo-1605538642019-21d7741689cf?q=80&w=2070&auto=format&fit=crop',
+    category: 'Excel',
+    level: 'Advanced',
+    duration: '8 weeks',
+    lessons: 36,
+    rating: 4.9,
+    students: 9260,
+    tags: ['Excel', 'VBA', 'Macros', 'Automation', 'Programming']
+  },
+  {
+    id: 'excel-3',
+    title: 'Financial Modeling in Excel',
+    instructor: 'Raj Patel',
+    description: 'Learn to build financial models for business valuation, budgeting, forecasting, and investment analysis using Excel. Master financial functions and advanced modeling techniques.',
+    price: 89.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1561414927-6d86591d0c4f?q=80&w=2073&auto=format&fit=crop',
+    category: 'Excel',
+    level: 'Advanced',
+    duration: '10 weeks',
+    lessons: 42,
+    rating: 4.8,
+    students: 7840,
+    tags: ['Excel', 'Financial Modeling', 'Valuation', 'Forecasting', 'Finance']
+  }
+];
+
+export const allCourses: Course[] = [
+  ...sampleCourses,
+  ...programmingCourses,
+  ...cybersecurityCourses,
+  ...businessCourses,
+  ...marketingCourses,
+  ...cryptocurrencyCourses,
+  ...excelCourses
+];
+
+export const getFeaturedCourses = (): Course[] => {
+  return allCourses.filter(course => course.featured);
+};
+
+export const getCourseById = (id: string): Course | undefined => {
+  return allCourses.find(course => course.id === id);
+};
+
+export const getInstructorByName = (name: string): Instructor | undefined => {
+  return instructors.find(instructor => 
+    instructor.name.toLowerCase() === name.toLowerCase());
+};
+
+export const getCoursesByInstructor = (instructorName: string): Course[] => {
+  return allCourses.filter(course => 
+    course.instructor.toLowerCase() === instructorName.toLowerCase());
+};
+
+export const getCoursesByCategory = (category: string): Course[] => {
+  return allCourses.filter(course => 
+    course.category.toLowerCase() === category.toLowerCase());
+};
