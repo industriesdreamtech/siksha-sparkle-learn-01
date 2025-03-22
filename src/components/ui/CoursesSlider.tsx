@@ -110,25 +110,25 @@ export function CoursesSlider({
         <CarouselContent className="-ml-2 md:-ml-4">
           {isInstructorView ? (
             // Render instructors
-            visibleItems.map((instructor: Instructor) => (
+            visibleItems.map((item) => (
               <CarouselItem 
-                key={instructor.name} 
+                key={(`instructor-${(item as Instructor).name}`)} 
                 className={isMobile ? "pl-2 basis-full" : "pl-4 md:basis-1/2 lg:basis-1/4"}
               >
-                <TutorCard instructor={instructor} />
+                <TutorCard instructor={item as Instructor} />
               </CarouselItem>
             ))
           ) : (
             // Render courses
-            visibleItems.map((course: Course) => (
+            visibleItems.map((item) => (
               <CarouselItem 
-                key={course.id} 
+                key={(`course-${(item as Course).id}`)} 
                 className={isMobile ? "pl-2 basis-full" : "pl-4 md:basis-1/2 lg:basis-1/3"}
               >
                 {variant === "featured" ? (
-                  <FeaturedCourse course={course} />
+                  <FeaturedCourse course={item as Course} />
                 ) : (
-                  <CourseCard course={course} />
+                  <CourseCard course={item as Course} />
                 )}
               </CarouselItem>
             ))

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar } from '@/components/layout/Navbar';
@@ -88,8 +87,8 @@ const Instructors = () => {
     // Apply language filter
     if (selectedLanguage !== 'all') {
       filtered = filtered.filter(instructor => {
-        if ('languages' in instructor) {
-          return instructor.languages?.some(lang => 
+        if ('languages' in instructor && instructor.languages) {
+          return instructor.languages.some(lang => 
             lang.toLowerCase() === selectedLanguage
           );
         }

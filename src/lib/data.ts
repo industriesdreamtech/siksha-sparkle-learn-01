@@ -35,6 +35,7 @@ export interface Instructor {
     linkedin?: string;
     github?: string;
     website?: string;
+    dribbble?: string; // Added for the social media link
   };
   education: {
     degree: string;
@@ -42,6 +43,11 @@ export interface Instructor {
     year: string;
   }[];
   achievements: string[];
+  languages?: string[]; // Added for language support
+  country?: string;    // Added for country information
+  region?: string;     // Added for region grouping
+  hourlyRate?: number; // Added for tutor rates
+  timezone?: string;   // Added for tutor timezone
 }
 
 export const instructors: Instructor[] = [
@@ -61,7 +67,8 @@ export const instructors: Instructor[] = [
       twitter: "https://twitter.com/sarahchen",
       linkedin: "https://linkedin.com/in/sarahchen",
       github: "https://github.com/sarahchen",
-      website: "https://drsarahchen.com"
+      website: "https://drsarahchen.com",
+      dribbble: "https://dribbble.com/sarahchen"
     },
     education: [
       {
@@ -85,7 +92,12 @@ export const instructors: Instructor[] = [
       "Developed ML algorithms used by 3 Fortune 500 companies",
       "Recipient of the ACM Distinguished Researcher Award",
       "TED speaker on the future of AI and education"
-    ]
+    ],
+    languages: ["English", "Spanish"],
+    country: "USA",
+    region: "North America",
+    hourlyRate: 50,
+    timezone: "UTC-5"
   },
   {
     name: "Michael Rodriguez",
@@ -122,7 +134,12 @@ export const instructors: Instructor[] = [
       "Speaker at ReactConf and NodeCon",
       "Author of 'Modern React Patterns' book",
       "Creator of the WebDevMastery online curriculum"
-    ]
+    ],
+    languages: ["English", "Spanish"],
+    country: "USA",
+    region: "North America",
+    hourlyRate: 60,
+    timezone: "UTC-4"
   },
   {
     name: "Alex Thompson",
@@ -158,7 +175,12 @@ export const instructors: Instructor[] = [
       "Former team lead at National Cybersecurity Center",
       "Discovered and responsibly disclosed 12 critical vulnerabilities",
       "Regular contributor to OWASP projects"
-    ]
+    ],
+    languages: ["English", "Spanish"],
+    country: "USA",
+    region: "North America",
+    hourlyRate: 70,
+    timezone: "UTC-3"
   },
   {
     name: "Dr. Priya Sharma",
@@ -200,7 +222,12 @@ export const instructors: Instructor[] = [
       "Published 18 papers in leading AI journals",
       "Developed predictive models used by 5 major Indian corporations",
       "TEDxIndia speaker on the future of AI in developing economies"
-    ]
+    ],
+    languages: ["English", "Spanish"],
+    country: "India",
+    region: "Asia",
+    hourlyRate: 80,
+    timezone: "UTC+5:30"
   },
   {
     name: "Raj Patel",
@@ -237,7 +264,12 @@ export const instructors: Instructor[] = [
       "Open source contributor to major DevOps tools",
       "Speaker at multiple tech conferences including JSFoo India",
       "Author of 'Modern DevOps Practices' e-book"
-    ]
+    ],
+    languages: ["English", "Spanish"],
+    country: "India",
+    region: "Asia",
+    hourlyRate: 90,
+    timezone: "UTC+5:30"
   },
   {
     name: "Ananya Desai",
@@ -274,7 +306,12 @@ export const instructors: Instructor[] = [
       "Speaker at India Design Summit and DesignUp",
       "Recipient of 'Young Designer of the Year' award",
       "Creator of popular design system used by multiple startups"
-    ]
+    ],
+    languages: ["English", "Spanish"],
+    country: "India",
+    region: "Asia",
+    hourlyRate: 100,
+    timezone: "UTC+5:30"
   }
 ];
 
@@ -1159,3 +1196,4 @@ export const getCoursesByInstructor = (instructorName: string) => {
 export const getInstructorByName = (name: string) => {
   return instructors.find(instructor => instructor.name === name);
 };
+
