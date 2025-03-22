@@ -4,7 +4,7 @@ export interface Course {
   instructor: string;
   description: string;
   price: number;
-  inrPrice?: number;
+  inrPrice?: number; // Added for Indian Rupee price
   image: string;
   category: string;
   level: 'Beginner' | 'Intermediate' | 'Advanced';
@@ -14,8 +14,8 @@ export interface Course {
   students: number;
   featured?: boolean;
   tags: string[];
-  isFree?: boolean;
-  videoUrl?: string;
+  isFree?: boolean; // Add this property to indicate free courses
+  videoUrl?: string; // Add this to store video URL for video courses
 }
 
 export interface Instructor {
@@ -383,7 +383,7 @@ export const sampleCourses: Course[] = [
     description: 'Design and implement scalable, high-availability architectures on Amazon Web Services. Learn about EC2, S3, RDS, Lambda, and other key services while applying best practices for security and cost optimization.',
     price: 99.99,
     inrPrice: 8299,
-    image: 'https://images.unsplash.com/photo-1451180102446-f3ece451e9d1?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2672&q=80',
     category: 'Cloud Computing',
     level: 'Advanced',
     duration: '10 weeks',
@@ -628,4 +628,368 @@ const programmingCourses: Course[] = [
     title: 'TypeScript for Modern Web Development',
     instructor: 'Michael Rodriguez',
     description: 'Learn TypeScript for building scalable and maintainable web applications with static type checking and advanced features.',
-    price: 84.99
+    price: 84.99,
+    inrPrice: 6999,
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop',
+    category: 'Programming',
+    level: 'Intermediate',
+    duration: '9 weeks',
+    lessons: 40,
+    rating: 4.8,
+    students: 7920,
+    tags: ['TypeScript', 'JavaScript', 'Web Development', 'Angular', 'React']
+  }
+];
+
+const cryptoCourses: Course[] = [
+  {
+    id: 'crypto-1',
+    title: 'Cryptocurrency Trading Fundamentals',
+    instructor: 'Alex Thompson',
+    description: 'Learn the basics of cryptocurrency trading, market analysis, and trading strategies. This course covers Bitcoin, Ethereum, and other major cryptocurrencies, along with technical analysis tools.',
+    price: 84.99,
+    inrPrice: 6999,
+    image: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=2069&auto=format&fit=crop',
+    category: 'Cryptocurrency',
+    level: 'Beginner',
+    duration: '6 weeks',
+    lessons: 32,
+    rating: 4.7,
+    students: 8920,
+    tags: ['Bitcoin', 'Ethereum', 'Trading', 'Technical Analysis']
+  },
+  {
+    id: 'crypto-2',
+    title: 'Blockchain Development with Solidity',
+    instructor: 'Robert Chen',
+    description: 'Master Ethereum development and smart contract programming using Solidity. Build decentralized applications (dApps) and learn how to test, deploy, and interact with smart contracts.',
+    price: 94.99,
+    inrPrice: 7899,
+    image: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2574&auto=format&fit=crop',
+    category: 'Cryptocurrency',
+    level: 'Intermediate',
+    duration: '8 weeks',
+    lessons: 42,
+    rating: 4.8,
+    students: 5640,
+    tags: ['Blockchain', 'Ethereum', 'Solidity', 'Smart Contracts']
+  },
+  {
+    id: 'crypto-3',
+    title: 'DeFi (Decentralized Finance) Masterclass',
+    instructor: 'Raj Patel',
+    description: 'Explore the world of decentralized finance (DeFi) and learn about lending protocols, decentralized exchanges, yield farming, and liquidity mining. Understand the risks and opportunities in the DeFi ecosystem.',
+    price: 89.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?q=80&w=2072&auto=format&fit=crop',
+    category: 'Cryptocurrency',
+    level: 'Advanced',
+    duration: '7 weeks',
+    lessons: 38,
+    rating: 4.7,
+    students: 4250,
+    tags: ['DeFi', 'Yield Farming', 'Liquidity Mining', 'DEX']
+  },
+  {
+    id: 'crypto-4',
+    title: 'NFT Creation and Trading',
+    instructor: 'Ananya Desai',
+    description: 'Learn how to create, mint, and sell NFTs (Non-Fungible Tokens). This course covers digital art creation, blockchain minting processes, marketplace listing, and NFT trading strategies.',
+    price: 79.99,
+    inrPrice: 6599,
+    image: 'https://images.unsplash.com/photo-1659536540455-161b929e650c?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cryptocurrency',
+    level: 'Intermediate',
+    duration: '5 weeks',
+    lessons: 28,
+    rating: 4.6,
+    students: 6820,
+    tags: ['NFT', 'Digital Art', 'Ethereum', 'Marketplaces']
+  },
+  {
+    id: 'crypto-5',
+    title: 'Cryptocurrency Security and Safety',
+    instructor: 'Alex Thompson',
+    description: 'Protect your cryptocurrency investments with best practices for security. Learn about hardware wallets, secure storage, avoiding scams, and risk management strategies for crypto investors.',
+    price: 69.99,
+    inrPrice: 5799,
+    image: 'https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=2069&auto=format&fit=crop',
+    category: 'Cryptocurrency',
+    level: 'Beginner',
+    duration: '4 weeks',
+    lessons: 24,
+    rating: 4.9,
+    students: 7850,
+    tags: ['Security', 'Hardware Wallets', 'Scam Prevention', 'Risk Management']
+  },
+  {
+    id: 'crypto-6',
+    title: 'Advanced Crypto Trading Strategies',
+    instructor: 'Michael Rodriguez',
+    description: 'Take your cryptocurrency trading to the next level with advanced trading strategies, algorithmic trading, and risk management techniques. Learn to use trading bots and technical indicators effectively.',
+    price: 99.99,
+    inrPrice: 8299,
+    image: 'https://images.unsplash.com/photo-1642784353782-608ed1a4661b?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cryptocurrency',
+    level: 'Advanced',
+    duration: '8 weeks',
+    lessons: 40,
+    rating: 4.7,
+    students: 4120,
+    tags: ['Trading', 'Algorithms', 'Technical Analysis', 'Trading Bots']
+  },
+  {
+    id: 'crypto-7',
+    title: 'Cryptocurrency Taxation and Compliance',
+    instructor: 'Dr. Sarah Chen',
+    description: 'Understand the tax implications of cryptocurrency investments and trading. Learn how to track transactions, calculate gains and losses, and comply with regulatory requirements in different jurisdictions.',
+    price: 84.99,
+    inrPrice: 6999,
+    image: 'https://images.unsplash.com/photo-1586486855514-8c633cc6fd32?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cryptocurrency',
+    level: 'Intermediate',
+    duration: '5 weeks',
+    lessons: 26,
+    rating: 4.6,
+    students: 3950,
+    tags: ['Taxation', 'Regulation', 'Compliance', 'Accounting']
+  },
+  {
+    id: 'crypto-8',
+    title: 'Crypto Market Analysis and Research',
+    instructor: 'Dr. Priya Sharma',
+    description: 'Develop skills for researching and analyzing cryptocurrency projects and markets. Learn fundamental analysis, tokenomics evaluation, and how to assess the potential of blockchain projects.',
+    price: 79.99,
+    inrPrice: 6599,
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cryptocurrency',
+    level: 'Intermediate',
+    duration: '6 weeks',
+    lessons: 30,
+    rating: 4.8,
+    students: 5280,
+    tags: ['Market Analysis', 'Fundamental Analysis', 'Tokenomics', 'Research']
+  },
+  {
+    id: 'crypto-9',
+    title: 'Web3 Development Foundations',
+    instructor: 'Robert Chen',
+    description: 'Learn the fundamentals of Web3 development and decentralized applications. This course covers blockchain interaction, wallet integration, and building user interfaces for blockchain applications.',
+    price: 89.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2032&auto=format&fit=crop',
+    category: 'Cryptocurrency',
+    level: 'Intermediate',
+    duration: '9 weeks',
+    lessons: 44,
+    rating: 4.7,
+    students: 4850,
+    tags: ['Web3', 'dApps', 'Blockchain', 'Wallets']
+  },
+  {
+    id: 'crypto-10',
+    title: 'Cryptocurrency for Beginners',
+    instructor: 'Michael Rodriguez',
+    description: 'Start your cryptocurrency journey with this comprehensive beginner\'s guide. Learn the basics of blockchain technology, how to buy and store cryptocurrencies, and understand the crypto ecosystem.',
+    price: 0,
+    inrPrice: 0,
+    image: 'https://images.unsplash.com/photo-1516245834210-c4c142787335?q=80&w=2069&auto=format&fit=crop',
+    category: 'Cryptocurrency',
+    level: 'Beginner',
+    duration: '4 weeks',
+    lessons: 20,
+    rating: 4.9,
+    students: 12450,
+    isFree: true,
+    tags: ['Bitcoin', 'Ethereum', 'Wallets', 'Exchanges', 'Beginners']
+  }
+];
+
+const businessCourses: Course[] = [
+  {
+    id: 'business-1',
+    title: 'MBA Essentials: Business Fundamentals',
+    instructor: 'Dr. Sarah Chen',
+    description: 'Master the core principles of business administration with this comprehensive MBA-inspired course. Learn strategic management, finance basics, marketing, operations, and leadership skills essential for business success.',
+    price: 99.99,
+    inrPrice: 8299,
+    image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=2069&auto=format&fit=crop',
+    category: 'Business',
+    level: 'Intermediate',
+    duration: '12 weeks',
+    lessons: 48,
+    rating: 4.9,
+    students: 18750,
+    tags: ['MBA', 'Business Strategy', 'Management', 'Leadership', 'Finance']
+  },
+  {
+    id: 'business-2',
+    title: 'Financial Accounting Masterclass',
+    instructor: 'Michael Rodriguez',
+    description: 'Develop a solid foundation in financial accounting principles and practices. Learn to read financial statements, understand accounting cycles, manage bookkeeping, and make informed business decisions based on financial data.',
+    price: 84.99,
+    inrPrice: 6999,
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop',
+    category: 'Business',
+    level: 'Beginner',
+    duration: '8 weeks',
+    lessons: 36,
+    rating: 4.7,
+    students: 12340,
+    tags: ['Accounting', 'Financial Statements', 'Bookkeeping', 'Finance']
+  },
+  {
+    id: 'business-3',
+    title: 'Startup Entrepreneurship: From Idea to Launch',
+    instructor: 'Raj Patel',
+    description: 'Learn how to transform your business idea into a successful startup. This course covers market validation, business model development, fundraising strategies, pitching to investors, and early-stage growth tactics.',
+    price: 89.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=2070&auto=format&fit=crop',
+    category: 'Business',
+    level: 'Beginner',
+    duration: '10 weeks',
+    lessons: 42,
+    rating: 4.8,
+    students: 15620,
+    tags: ['Entrepreneurship', 'Startup', 'Business Model Canvas', 'Fundraising', 'Pitch Deck']
+  },
+  {
+    id: 'business-4',
+    title: 'Corporate Finance and Valuation',
+    instructor: 'Dr. Priya Sharma',
+    description: 'Master the principles of corporate finance, capital budgeting, and business valuation. Learn financial modeling, discounted cash flow analysis, and how to make strategic investment decisions for business growth.',
+    price: 94.99,
+    inrPrice: 7899,
+    image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=2070&auto=format&fit=crop',
+    category: 'Business',
+    level: 'Advanced',
+    duration: '9 weeks',
+    lessons: 38,
+    rating: 4.7,
+    students: 8240,
+    tags: ['Corporate Finance', 'Valuation', 'Financial Modeling', 'DCF Analysis']
+  },
+  {
+    id: 'business-5',
+    title: 'Business Negotiation Skills',
+    instructor: 'Alex Thompson',
+    description: 'Develop powerful negotiation skills essential for business success. This course covers negotiation frameworks, tactics, cultural considerations, and practical exercises to help you secure better deals and business relationships.',
+    price: 79.99,
+    inrPrice: 6599,
+    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
+    category: 'Business',
+    level: 'Intermediate',
+    duration: '6 weeks',
+    lessons: 28,
+    rating: 4.8,
+    students: 10580,
+    tags: ['Negotiation', 'Communication', 'Conflict Resolution', 'Deal Making']
+  },
+  {
+    id: 'business-6',
+    title: 'Supply Chain Management',
+    instructor: 'Dr. Sarah Chen',
+    description: 'Learn to optimize business operations through effective supply chain management. This course covers procurement, logistics, inventory management, demand forecasting, and creating resilient supply chains for competitive advantage.',
+    price: 89.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop',
+    category: 'Business',
+    level: 'Intermediate',
+    duration: '8 weeks',
+    lessons: 34,
+    rating: 4.6,
+    students: 7340,
+    tags: ['Supply Chain', 'Logistics', 'Operations', 'Inventory Management']
+  },
+  {
+    id: 'business-7',
+    title: 'Business Law and Ethics',
+    instructor: 'Alex Thompson',
+    description: 'Understand the legal and ethical frameworks that impact business operations. This course covers contract law, intellectual property, employment regulations, corporate governance, and ethical decision-making in business contexts.',
+    price: 84.99,
+    inrPrice: 6999,
+    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070&auto=format&fit=crop',
+    category: 'Business',
+    level: 'Intermediate',
+    duration: '7 weeks',
+    lessons: 32,
+    rating: 4.7,
+    students: 6270,
+    tags: ['Business Law', 'Ethics', 'Compliance', 'Corporate Governance']
+  },
+  {
+    id: 'business-8',
+    title: 'Project Management Professional',
+    instructor: 'Raj Patel',
+    description: 'Master project management methodologies and prepare for PMP certification. Learn to initiate, plan, execute, monitor, and close projects effectively while managing resources, timelines, and stakeholder expectations.',
+    price: 99.99,
+    inrPrice: 8299,
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop',
+    category: 'Business',
+    level: 'Advanced',
+    duration: '10 weeks',
+    lessons: 45,
+    rating: 4.9,
+    students: 11840,
+    tags: ['Project Management', 'PMP', 'Agile', 'PMBOK', 'Scrum']
+  },
+  {
+    id: 'business-9',
+    title: 'Business Analytics with Excel',
+    instructor: 'Ananya Desai',
+    description: 'Learn how to use Microsoft Excel for powerful business data analysis. Master advanced functions, pivot tables, data visualization, regression analysis, and business intelligence techniques to drive data-informed decisions.',
+    price: 74.99,
+    inrPrice: 6249,
+    image: 'https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=2070&auto=format&fit=crop',
+    category: 'Business',
+    level: 'Intermediate',
+    duration: '6 weeks',
+    lessons: 30,
+    rating: 4.8,
+    students: 14620,
+    tags: ['Excel', 'Data Analysis', 'Business Intelligence', 'Analytics']
+  },
+  {
+    id: 'business-10',
+    title: 'Leadership and Management Skills',
+    instructor: 'Dr. Priya Sharma',
+    description: 'Develop essential leadership and management skills to effectively lead teams and organizations. Learn about different leadership styles, emotional intelligence, conflict resolution, team building, and strategic decision-making.',
+    price: 89.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop',
+    category: 'Business',
+    level: 'Beginner',
+    duration: '8 weeks',
+    lessons: 38,
+    rating: 4.9,
+    students: 17280,
+    featured: true,
+    tags: ['Leadership', 'Management', 'Team Building', 'Emotional Intelligence']
+  }
+];
+
+export const allCourses = [...sampleCourses, ...programmingCourses, ...cryptoCourses, ...businessCourses];
+
+export const getCoursesByCategory = (category: string) => {
+  if (category === 'All') {
+    return allCourses;
+  }
+  return allCourses.filter(course => course.category === category);
+};
+
+export const getFeaturedCourses = () => {
+  return allCourses.filter(course => course.featured);
+};
+
+export const getCourseById = (id: string) => {
+  return allCourses.find(course => course.id === id);
+};
+
+export const getCoursesByInstructor = (instructorName: string) => {
+  return allCourses.filter(course => course.instructor === instructorName);
+};
+
+export const getInstructorByName = (name: string) => {
+  return instructors.find(instructor => instructor.name === name);
+};
