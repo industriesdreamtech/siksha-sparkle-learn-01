@@ -1,20 +1,23 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Sparkles, Users, Award, BarChart3, Play, Star, ChevronRight, Search, Zap, TrendingUp, BrainCircuit, Code } from 'lucide-react';
+import { ArrowRight, BookOpen, Sparkles, Users, Award, BarChart3, Play, Star, ChevronRight, Search, Zap, TrendingUp, BrainCircuit, Code, Clock, CheckCircle, Filter, Globe, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CategoryFilter } from '@/components/ui/CategoryFilter';
 import { CourseCard } from '@/components/ui/CourseCard';
 import { FeaturedCourse } from '@/components/ui/FeaturedCourse';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getFeaturedCourses, getCoursesByCategory, categories } from '@/lib/data';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [displayCourses, setDisplayCourses] = useState(getCoursesByCategory('All').slice(0, 3));
+  const [displayCourses, setDisplayCourses] = useState(getCoursesByCategory('All').slice(0, 6));
   const [featuredCourses, setFeaturedCourses] = useState(getFeaturedCourses());
   const [isVisible, setIsVisible] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const heroRef = useRef<HTMLDivElement>(null);
   
   // Scroll animation tracking
@@ -61,8 +64,14 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    setDisplayCourses(getCoursesByCategory(selectedCategory).slice(0, 3));
+    setDisplayCourses(getCoursesByCategory(selectedCategory).slice(0, 6));
   }, [selectedCategory]);
+  
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle search logic here
+    console.log("Searching for:", searchQuery);
+  };
   
   const handleExploreClick = () => {
     if (heroRef.current) {
@@ -72,6 +81,31 @@ const Index = () => {
       });
     }
   };
+  
+  // Testimonials data
+  const testimonials = [
+    {
+      id: 1,
+      name: "Sarah Johnson",
+      role: "Software Developer",
+      image: "https://randomuser.me/api/portraits/women/44.jpg",
+      testimonial: "The programming courses on Siksha helped me transition from a junior to senior developer in just 6 months. The hands-on projects were particularly valuable!",
+    },
+    {
+      id: 2,
+      name: "Michael Chen",
+      role: "Data Scientist",
+      image: "https://randomuser.me/api/portraits/men/32.jpg",
+      testimonial: "I completed the Data Science path and landed my dream job within weeks. The curriculum is comprehensive and the instructors are top-notch professionals.",
+    },
+    {
+      id: 3,
+      name: "Priya Patel",
+      role: "UX Designer",
+      image: "https://randomuser.me/api/portraits/women/68.jpg",
+      testimonial: "As someone transitioning to tech from a non-technical background, Siksha made learning accessible and engaging. The community support is amazing!",
+    },
+  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
