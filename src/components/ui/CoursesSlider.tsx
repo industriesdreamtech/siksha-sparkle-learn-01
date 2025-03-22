@@ -55,7 +55,7 @@ export function CoursesSlider({
           {subtitle && <p className="text-muted-foreground">{subtitle}</p>}
           {totalCourses > 20 && (
             <p className="text-xs text-muted-foreground mt-1">
-              Showing 20 of {totalCourses} courses
+              Showing {visibleCourses.length} of {totalCourses} courses
             </p>
           )}
         </div>
@@ -81,6 +81,13 @@ export function CoursesSlider({
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </>
+          )}
+          {viewAllLink && totalCourses > visibleCourses.length && (
+            <Button variant="outline" asChild className="ml-2">
+              <a href={viewAllLink}>
+                View All
+              </a>
+            </Button>
           )}
         </div>
       </div>
@@ -122,11 +129,11 @@ export function CoursesSlider({
         )}
       </Carousel>
       
-      {viewAllLink && courses.length > visibleCourses.length && (
+      {viewAllLink && (
         <div className="mt-8 text-center">
           <Button variant="outline" asChild>
             <a href={viewAllLink}>
-              View All {title} ({courses.length})
+              View All {title} ({totalCourses})
             </a>
           </Button>
         </div>
