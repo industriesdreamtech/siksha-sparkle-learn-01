@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, Sparkles, Users, Award, BarChart3, Play, Star, ChevronRight, Search, Zap, TrendingUp, BrainCircuit, Code, Clock, CheckCircle, Filter, Globe, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CategoryFilter } from '@/components/ui/CategoryFilter';
-import { CourseCard } from '@/components/ui/CourseCard';
-import { FeaturedCourse } from '@/components/ui/FeaturedCourse';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getFeaturedCourses, getCoursesByCategory, categories } from '@/lib/data';
+import { CoursesSlider } from '@/components/ui/CoursesSlider';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -63,11 +62,6 @@ const Index = () => {
   useEffect(() => {
     setDisplayCourses(getCoursesByCategory(selectedCategory).slice(0, 6));
   }, [selectedCategory]);
-  
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Searching for:", searchQuery);
-  };
   
   const handleExploreClick = () => {
     if (heroRef.current) {
@@ -239,34 +233,21 @@ const Index = () => {
       
       <section id="featured" className={`py-16 ${animatedSections.includes('featured') ? 'animate-fade-up' : 'opacity-0'}`}>
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
-            <div>
-              <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium bg-primary/10 text-primary mb-2">
-                <Star className="h-3 w-3 mr-1 fill-primary text-primary" />
-                <span>Top Rated</span>
-              </div>
-              <h2 className="font-display text-3xl font-medium mb-2">Featured Courses</h2>
-              <p className="text-muted-foreground">Handpicked premium courses to kick-start your learning journey</p>
-            </div>
-            <Button variant="ghost" asChild className="mt-4 md:mt-0 group">
-              <Link to="/courses">
-                <span>View All</span>
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featuredCourses.map((course) => (
-              <FeaturedCourse key={course.id} course={course} />
-            ))}
-          </div>
+          <CoursesSlider
+            title="Featured Courses"
+            subtitle="Handpicked premium courses to kick-start your learning journey"
+            courses={featuredCourses}
+            viewAllLink="/courses"
+            variant="featured"
+            badgeText="Top Rated"
+            badgeIcon={<Star className="h-3 w-3 fill-primary text-primary" />}
+          />
         </div>
       </section>
       
       <section id="explore" className={`py-20 bg-gradient-to-b from-background via-secondary/10 to-background ${animatedSections.includes('explore') ? 'animate-fade-up' : 'opacity-0'}`}>
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8">
             <h2 className="font-display text-3xl font-medium mb-4">Explore Our Courses</h2>
             <p className="text-muted-foreground">
               Discover courses by category and find the perfect match for your learning goals
@@ -280,20 +261,12 @@ const Index = () => {
             />
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {displayCourses.map((course) => (
-              <CourseCard key={course.id} course={course} />
-            ))}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Button asChild className="group animate-pulse">
-              <Link to="/courses">
-                <span>Browse All Courses</span>
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-          </div>
+          <CoursesSlider
+            title={selectedCategory === 'All' ? 'All Courses' : `${selectedCategory} Courses`}
+            courses={displayCourses}
+            viewAllLink={`/courses?category=${encodeURIComponent(selectedCategory)}`}
+            variant="regular"
+          />
         </div>
       </section>
       
