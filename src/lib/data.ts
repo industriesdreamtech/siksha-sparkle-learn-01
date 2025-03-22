@@ -802,3 +802,19 @@ export const getCoursesByCategory = (category: string): Course[] => {
   }
   return allCourses.filter(course => course.category === category);
 };
+
+export const getFeaturedCourses = (): Course[] => {
+  return allCourses.filter(course => course.featured);
+};
+
+export const getCourseById = (id: string): Course | undefined => {
+  return allCourses.find(course => course.id === id);
+};
+
+export const getInstructorByName = (name: string): Instructor | undefined => {
+  return instructors.find(instructor => instructor.name === name);
+};
+
+export const getCoursesByInstructor = (instructorName: string): Course[] => {
+  return allCourses.filter(course => course.instructor === instructorName);
+};
