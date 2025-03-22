@@ -39,6 +39,7 @@ export function CoursesSlider({
   
   // Limit visible courses for better carousel performance
   const visibleCourses = courses.slice(0, 20);
+  const totalCourses = courses.length;
   
   return (
     <div className="w-full">
@@ -52,6 +53,11 @@ export function CoursesSlider({
           )}
           <h2 className="font-display text-3xl font-medium mb-2">{title}</h2>
           {subtitle && <p className="text-muted-foreground">{subtitle}</p>}
+          {totalCourses > 20 && (
+            <p className="text-xs text-muted-foreground mt-1">
+              Showing 20 of {totalCourses} courses
+            </p>
+          )}
         </div>
         <div className="flex gap-2 mt-4 md:mt-0">
           {!isMobile && (
