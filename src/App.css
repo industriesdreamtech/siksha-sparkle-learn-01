@@ -74,6 +74,16 @@
     bottom: 0 !important;
     background-color: var(--background) !important;
   }
+  
+  .vaul-drawer-content {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+  
+  .vaul-drawer-content > div:first-child {
+    display: none !important;
+  }
 }
 
 /* Basic animations */

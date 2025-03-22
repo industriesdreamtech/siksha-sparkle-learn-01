@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircleHeart, Send, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,7 +13,11 @@ interface Message {
   courses?: any[];
 }
 
-export function AIshaChatbot() {
+interface AIshaChatbotProps {
+  isMobileDrawer?: boolean;
+}
+
+export function AIshaChatbot({ isMobileDrawer = false }: AIshaChatbotProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -25,10 +28,16 @@ export function AIshaChatbot() {
   ]);
   const [inputValue, setInputValue] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+    if (isMobileDrawer) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 300);
+    }
+  }, [messages, isMobileDrawer]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -37,7 +46,6 @@ export function AIshaChatbot() {
   const analyzeCourseQuery = (query: string) => {
     const queryLower = query.toLowerCase();
     
-    // Extract potential keywords
     const keywords = {
       level: ['beginner', 'intermediate', 'advanced', 'expert', 'start', 'basic', 'easy'],
       interests: [
@@ -73,7 +81,6 @@ export function AIshaChatbot() {
     
     const isFree = queryLower.includes('free');
     
-    // Filter courses based on detected criteria
     let filteredCourses = [...sampleCourses];
     
     if (detectedLevel) {
@@ -97,10 +104,8 @@ export function AIshaChatbot() {
       filteredCourses = filteredCourses.filter(course => course.isFree);
     }
     
-    // Sort by rating for better recommendations
     filteredCourses.sort((a, b) => b.rating - a.rating);
     
-    // Return top 3 results
     return filteredCourses.slice(0, 3);
   };
 
@@ -112,34 +117,28 @@ export function AIshaChatbot() {
     
     const messageLower = userMessage.toLowerCase();
     
-    // Check if it's a greeting
     if (greetings.some(greeting => messageLower.includes(greeting))) {
       return "Hello! I'm AIsha, your learning assistant. I can help you find the right courses based on your interests and goals. What would you like to learn today?";
     }
     
-    // Check if asking about the assistant
     if (aboutKeywords.some(keyword => messageLower.includes(keyword))) {
       return "I'm AIsha, your personalized learning assistant for Siksha. I can recommend courses based on your interests, skill level, and career goals. I can also answer questions about our platform and help you navigate your learning journey.";
     }
     
-    // Check if thanking
     if (thankKeywords.some(keyword => messageLower.includes(keyword))) {
       return "You're welcome! I'm always here to help with your learning journey. Let me know if you need anything else!";
     }
     
-    // Check if asking for general help
     if (helpKeywords.some(keyword => messageLower.includes(keyword)) && !messageLower.includes('course')) {
       return "I can help you find courses, provide information about our platform, or guide you through your learning journey. What specific area would you like assistance with?";
     }
     
-    // Course recommendations
     if (recommendedCourses.length > 0) {
       let response = "Based on what you're looking for, here are some courses that might interest you:";
       
       return response;
     }
     
-    // Default responses if no other conditions are met
     const defaultResponses = [
       "I'd be happy to help you find the right course. Could you tell me more about what topics you're interested in and your skill level?",
       "I can suggest some popular courses in our catalog. Are you interested in any specific area like programming, data science, or business?",
@@ -153,7 +152,6 @@ export function AIshaChatbot() {
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
     
-    // Add user message
     const userMessage: Message = {
       id: Date.now().toString(),
       text: inputValue,
@@ -164,13 +162,10 @@ export function AIshaChatbot() {
     setMessages((prev) => [...prev, userMessage]);
     setInputValue('');
     
-    // Analyze the message and get recommended courses
     const recommendedCourses = analyzeCourseQuery(inputValue);
     
-    // Generate bot response
     const botResponseText = generateResponse(inputValue, recommendedCourses);
     
-    // Simulate bot response after a short delay
     setTimeout(() => {
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -192,7 +187,7 @@ export function AIshaChatbot() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4" data-drawer="chat-content">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -205,7 +200,7 @@ export function AIshaChatbot() {
                   : 'bg-accent text-accent-foreground'
               }`}
             >
-              <div>{message.text}</div>
+              <div className="text-left">{message.text}</div>
               
               {message.courses && message.courses.length > 0 && (
                 <div className="mt-3 space-y-2">
@@ -231,7 +226,7 @@ export function AIshaChatbot() {
         ))}
         <div ref={messagesEndRef} />
       </div>
-      <div className="border-t p-4">
+      <div className={`border-t p-4 ${isMobileDrawer ? 'sticky bottom-0 bg-background' : ''}`} data-drawer="chat-input">
         <div className="flex gap-2">
           <Input
             placeholder="Type your message..."
@@ -239,6 +234,7 @@ export function AIshaChatbot() {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
             className="flex-1"
+            ref={inputRef}
           />
           <Button size="icon" onClick={handleSendMessage} className="bg-primary hover:bg-secondary">
             <Send className="h-4 w-4" />
