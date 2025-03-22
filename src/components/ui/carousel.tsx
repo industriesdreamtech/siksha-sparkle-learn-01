@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -17,6 +18,7 @@ type CarouselProps = {
   plugins?: CarouselPlugin
   orientation?: "horizontal" | "vertical"
   setApi?: (api: CarouselApi) => void
+  onScrollProgress?: (api: CarouselApi) => void
 }
 
 type CarouselContextProps = {
@@ -52,6 +54,7 @@ const Carousel = React.forwardRef<
       plugins,
       className,
       children,
+      onScrollProgress,
       ...props
     },
     ref
@@ -73,7 +76,12 @@ const Carousel = React.forwardRef<
 
       setCanScrollPrev(api.canScrollPrev())
       setCanScrollNext(api.canScrollNext())
-    }, [])
+      
+      // Call the onScrollProgress callback if provided
+      if (onScrollProgress) {
+        onScrollProgress(api);
+      }
+    }, [onScrollProgress])
 
     const scrollPrev = React.useCallback(() => {
       api?.scrollPrev()
@@ -130,6 +138,7 @@ const Carousel = React.forwardRef<
           scrollNext,
           canScrollPrev,
           canScrollNext,
+          onScrollProgress,
         }}
       >
         <div

@@ -31,6 +31,12 @@ export function CoursesSlider({
   const [canScrollNext, setCanScrollNext] = useState(true);
   const isMobile = useIsMobile();
   
+  const handleScrollProgress = (api: any) => {
+    if (!api) return;
+    setCanScrollPrev(api.canScrollPrev());
+    setCanScrollNext(api.canScrollNext());
+  };
+  
   return (
     <div className="w-full">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
@@ -52,11 +58,7 @@ export function CoursesSlider({
           loop: false,
         }}
         className="w-full"
-        onScrollProgress={(api) => {
-          if (!api) return;
-          setCanScrollPrev(api.canScrollPrev());
-          setCanScrollNext(api.canScrollNext());
-        }}
+        onScrollProgress={handleScrollProgress}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {courses.map((course) => (
