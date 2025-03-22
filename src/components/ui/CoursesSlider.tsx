@@ -37,7 +37,7 @@ export function CoursesSlider({
     setCanScrollNext(api.canScrollNext());
   };
   
-  // Limit visible courses for better performance
+  // Limit visible courses for better carousel performance
   const visibleCourses = courses.slice(0, 20);
   
   return (
@@ -116,10 +116,12 @@ export function CoursesSlider({
         )}
       </Carousel>
       
-      {viewAllLink && (
+      {viewAllLink && courses.length > visibleCourses.length && (
         <div className="mt-8 text-center">
           <Button variant="outline" asChild>
-            <a href={viewAllLink}>View All {title}</a>
+            <a href={viewAllLink}>
+              View All {title} ({courses.length})
+            </a>
           </Button>
         </div>
       )}
