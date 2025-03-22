@@ -20,10 +20,8 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const heroRef = useRef<HTMLDivElement>(null);
   
-  // Scroll animation tracking
   const [animatedSections, setAnimatedSections] = useState<string[]>([]);
   
-  // Observer for scroll animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -46,7 +44,6 @@ const Index = () => {
   useEffect(() => {
     setIsVisible(true);
     
-    // Simulate typing effect on page load
     const text = "Elevate Your Skills with";
     const typingElement = document.getElementById('typing-text');
     if (typingElement) {
@@ -69,7 +66,6 @@ const Index = () => {
   
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle search logic here
     console.log("Searching for:", searchQuery);
   };
   
@@ -82,7 +78,6 @@ const Index = () => {
     }
   };
   
-  // Testimonials data
   const testimonials = [
     {
       id: 1,
@@ -111,13 +106,11 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
       
-      {/* Hero Section with animated particles */}
       <section ref={heroRef} className="pt-28 pb-16 md:pt-32 md:pb-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-black/[0.02] -z-10"></div>
         <div className="absolute right-0 top-1/3 -translate-y-1/2 w-2/3 aspect-square rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-3xl -z-10"></div>
         <div className="absolute left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-background to-transparent -z-10"></div>
         
-        {/* Animated floating elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(15)].map((_, i) => (
             <div 
@@ -178,7 +171,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Popular Categories */}
       <section id="categories" className={`py-16 ${animatedSections.includes('categories') ? 'animate-fade-up' : 'opacity-0'}`}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
@@ -222,7 +214,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Stats Section */}
       <section id="stats" className={`py-16 bg-gradient-to-b from-secondary/30 to-background ${animatedSections.includes('stats') ? 'animate-fade-up' : 'opacity-0'}`}>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -246,10 +237,9 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Featured Course Section */}
-      <section id="featured" className={`py-20 ${animatedSections.includes('featured') ? 'animate-fade-up' : 'opacity-0'}`}>
+      <section id="featured" className={`py-16 ${animatedSections.includes('featured') ? 'animate-fade-up' : 'opacity-0'}`}>
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
             <div>
               <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium bg-primary/10 text-primary mb-2">
                 <Star className="h-3 w-3 mr-1 fill-primary text-primary" />
@@ -266,7 +256,7 @@ const Index = () => {
             </Button>
           </div>
           
-          <div className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredCourses.map((course) => (
               <FeaturedCourse key={course.id} course={course} />
             ))}
@@ -274,7 +264,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Course Categories Section */}
       <section id="explore" className={`py-20 bg-gradient-to-b from-background via-secondary/10 to-background ${animatedSections.includes('explore') ? 'animate-fade-up' : 'opacity-0'}`}>
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12">
@@ -308,7 +297,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Features Section */}
       <section id="features" className={`py-20 ${animatedSections.includes('features') ? 'animate-fade-up' : 'opacity-0'}`}>
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-16">
@@ -352,7 +340,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* New Learning Paths Section */}
       <section id="learning-paths" className={`py-20 bg-primary/5 relative overflow-hidden ${animatedSections.includes('learning-paths') ? 'animate-fade-up' : 'opacity-0'}`}>
         <div className="absolute inset-0 bg-grid-white/5 -z-10"></div>
         <div className="absolute right-0 bottom-0 w-1/2 aspect-square rounded-full bg-gradient-to-br from-primary/20 to-transparent blur-3xl -z-10"></div>
@@ -447,7 +434,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Call to Action Section */}
       <section id="cta" className={`py-20 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden ${animatedSections.includes('cta') ? 'animate-fade-up' : 'opacity-0'}`}>
         <div className="absolute inset-0 bg-grid-white/5 -z-10"></div>
         <div className="absolute left-0 top-0 w-1/2 aspect-square rounded-full bg-gradient-to-br from-primary/20 to-transparent blur-3xl -z-10"></div>

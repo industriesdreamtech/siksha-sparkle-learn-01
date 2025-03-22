@@ -15,6 +15,7 @@ import NotFound from "./pages/NotFound";
 import { ChatbotDrawer } from "./components/chat/ChatbotDrawer";
 import Community from "./pages/Community";
 import Settings from "./pages/Settings";
+import { Layout } from "./components/layout/Layout";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/community" element={<Community />} />
           <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/about" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
