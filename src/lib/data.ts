@@ -329,22 +329,6 @@ export const sampleCourses: Course[] = [
   },
   {
     id: '3',
-    title: 'Cybersecurity Essentials',
-    instructor: 'Alex Thompson',
-    description: 'Understand the critical concepts of information security and learn how to protect systems and networks from cyber threats. This course covers encryption, network security, ethical hacking, and security policies.',
-    price: 94.99,
-    inrPrice: 7899,
-    image: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-    category: 'Cybersecurity',
-    level: 'Intermediate',
-    duration: '12 weeks',
-    lessons: 52,
-    rating: 4.7,
-    students: 6890,
-    tags: ['Network Security', 'Ethical Hacking', 'Cryptography', 'Risk Management']
-  },
-  {
-    id: '4',
     title: 'Python for Data Science',
     instructor: 'Emily Johnson',
     description: 'Learn how to use Python for data analysis, visualization, and machine learning. This course will teach you essential libraries like Pandas, NumPy, Matplotlib, and scikit-learn through practical exercises.',
@@ -361,7 +345,7 @@ export const sampleCourses: Course[] = [
     tags: ['Python', 'Pandas', 'NumPy', 'Matplotlib', 'Data Visualization']
   },
   {
-    id: '5',
+    id: '4',
     title: 'iOS App Development with Swift',
     instructor: 'David Kim',
     description: 'Build professional iOS applications using Swift and Xcode. Learn UI design principles, data persistence, networking, and how to publish your app to the App Store. Includes hands-on projects to build a portfolio.',
@@ -377,7 +361,7 @@ export const sampleCourses: Course[] = [
     tags: ['Swift', 'iOS', 'Xcode', 'UIKit', 'SwiftUI']
   },
   {
-    id: '6',
+    id: '5',
     title: 'Cloud Architecture on AWS',
     instructor: 'James Wilson',
     description: 'Design and implement scalable, high-availability architectures on Amazon Web Services. Learn about EC2, S3, RDS, Lambda, and other key services while applying best practices for security and cost optimization.',
@@ -394,7 +378,7 @@ export const sampleCourses: Course[] = [
     tags: ['AWS', 'Cloud Computing', 'DevOps', 'Serverless']
   },
   {
-    id: '7',
+    id: '6',
     title: 'UX/UI Design Principles',
     instructor: 'Sophia Martinez',
     description: 'Learn the fundamentals of user experience and interface design. This course covers user research, wireframing, prototyping, and usability testing to create intuitive and visually appealing digital products.',
@@ -410,7 +394,7 @@ export const sampleCourses: Course[] = [
     tags: ['UX', 'UI', 'Figma', 'Wireframing', 'User Research']
   },
   {
-    id: '8',
+    id: '7',
     title: 'Blockchain Development',
     instructor: 'Robert Chen',
     description: 'Understand blockchain technology and learn how to develop decentralized applications. This course covers Ethereum, smart contracts with Solidity, Web3.js, and dApp architecture.',
@@ -426,7 +410,7 @@ export const sampleCourses: Course[] = [
     tags: ['Blockchain', 'Ethereum', 'Solidity', 'Smart Contracts', 'Web3']
   },
   {
-    id: '9',
+    id: '8',
     title: 'Advanced Excel Masterclass',
     instructor: 'Michael Rodriguez',
     description: 'Master advanced Excel functions, pivot tables, macros, VBA, and data analysis techniques to boost your productivity and career prospects. This free course covers everything from complex formulas to dashboard creation.',
@@ -444,7 +428,7 @@ export const sampleCourses: Course[] = [
     tags: ['Excel', 'Data Analysis', 'VBA', 'Macros', 'Pivot Tables']
   },
   {
-    id: '10',
+    id: '9',
     title: 'Excel for Beginners: Complete Guide',
     instructor: 'Ananya Desai',
     description: 'Start your Excel journey from the basics and gradually build up to intermediate skills. Learn formatting, formulas, functions, charts, tables, and practical applications for business and personal use.',
@@ -461,7 +445,7 @@ export const sampleCourses: Course[] = [
     tags: ['Excel', 'Formulas', 'Functions', 'Charts', 'Formatting']
   },
   {
-    id: '11',
+    id: '10',
     title: 'Business Strategy Fundamentals',
     instructor: 'Raj Patel',
     description: 'Learn key business strategy concepts, competitive analysis, market positioning, and strategic planning. This course provides practical frameworks to analyze and develop effective strategies for various business contexts.',
@@ -477,7 +461,7 @@ export const sampleCourses: Course[] = [
     tags: ['Business Strategy', 'Marketing', 'Competitive Analysis', 'Strategic Planning']
   },
   {
-    id: '12',
+    id: '11',
     title: 'Digital Marketing Essentials',
     instructor: 'Ananya Desai',
     description: 'Master the fundamentals of digital marketing including SEO, social media, content marketing, email campaigns, and analytics. Learn how to create and execute effective digital marketing strategies.',
@@ -493,7 +477,7 @@ export const sampleCourses: Course[] = [
     tags: ['Digital Marketing', 'SEO', 'Social Media', 'Content Marketing', 'Analytics']
   },
   {
-    id: '13',
+    id: '12',
     title: 'Cryptocurrency and Blockchain Fundamentals',
     instructor: 'Alex Thompson',
     description: 'Understand the basics of blockchain technology, cryptocurrencies, and their applications. Learn about Bitcoin, Ethereum, smart contracts, decentralized finance, and the future of digital assets.',
@@ -509,7 +493,7 @@ export const sampleCourses: Course[] = [
     tags: ['Blockchain', 'Cryptocurrency', 'Bitcoin', 'Ethereum', 'DeFi']
   },
   {
-    id: '14',
+    id: '13',
     title: 'React Native Mobile Development',
     instructor: 'Michael Rodriguez',
     description: 'Build cross-platform mobile applications using React Native. Learn to create native-like UI components, handle device features, and deploy apps to iOS and Android stores.',
@@ -525,7 +509,7 @@ export const sampleCourses: Course[] = [
     tags: ['React Native', 'Mobile Development', 'JavaScript', 'Cross-Platform']
   },
   {
-    id: '15',
+    id: '14',
     title: 'Advanced Data Visualization',
     instructor: 'Dr. Priya Sharma',
     description: 'Create powerful and interactive data visualizations using D3.js, Tableau, and Python libraries. Learn principles of effective visualization and how to communicate complex data insights clearly.',
@@ -628,4 +612,193 @@ const programmingCourses: Course[] = [
     title: 'TypeScript for Modern Web Development',
     instructor: 'Michael Rodriguez',
     description: 'Learn TypeScript for building scalable and maintainable web applications with static type checking and advanced features.',
-    price: 84.99
+    price: 84.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=2070&auto=format&fit=crop',
+    category: 'Programming',
+    level: 'Intermediate',
+    duration: '8 weeks',
+    lessons: 36,
+    rating: 4.8,
+    students: 5250,
+    tags: ['TypeScript', 'Web Development', 'JavaScript', 'Frontend']
+  }
+];
+
+export const cybersecurityCourses: Course[] = [
+  {
+    id: 'cyber-1',
+    title: 'Cybersecurity Essentials',
+    instructor: 'Alex Thompson',
+    description: 'Understand the critical concepts of information security and learn how to protect systems and networks from cyber threats. This course covers encryption, network security, ethical hacking, and security policies.',
+    price: 94.99,
+    inrPrice: 7899,
+    image: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    category: 'Cybersecurity',
+    level: 'Intermediate',
+    duration: '12 weeks',
+    lessons: 52,
+    rating: 4.7,
+    students: 6890,
+    tags: ['Network Security', 'Ethical Hacking', 'Cryptography', 'Risk Management']
+  },
+  {
+    id: 'cyber-2',
+    title: 'Ethical Hacking & Penetration Testing',
+    instructor: 'Alex Thompson',
+    description: 'Learn practical ethical hacking techniques and methodologies used by professional penetration testers. Master tools like Metasploit, Wireshark, and Burp Suite while understanding how to identify and exploit vulnerabilities ethically.',
+    price: 99.99,
+    inrPrice: 8299,
+    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '10 weeks',
+    lessons: 45,
+    rating: 4.8,
+    students: 5420,
+    tags: ['Ethical Hacking', 'Penetration Testing', 'Kali Linux', 'Vulnerability Assessment']
+  },
+  {
+    id: 'cyber-3',
+    title: 'CompTIA Security+ Certification Prep',
+    instructor: 'Alex Thompson',
+    description: 'Comprehensive preparation for the CompTIA Security+ certification exam. Cover all exam objectives including network security, compliance, threats, vulnerabilities, cryptography, and identity management.',
+    price: 84.99,
+    inrPrice: 6999,
+    image: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Beginner',
+    duration: '8 weeks',
+    lessons: 36,
+    rating: 4.9,
+    students: 8740,
+    featured: true,
+    tags: ['CompTIA', 'Security+', 'Certification', 'IT Security']
+  },
+  {
+    id: 'cyber-4',
+    title: 'Network Security Fundamentals',
+    instructor: 'Dr. Sarah Chen',
+    description: 'Build a solid foundation in network security concepts and implementations. Learn about firewalls, IDS/IPS, VPNs, secure network architectures, and how to monitor networks for suspicious activity.',
+    price: 79.99,
+    inrPrice: 6599,
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Intermediate',
+    duration: '6 weeks',
+    lessons: 28,
+    rating: 4.6,
+    students: 4950,
+    tags: ['Network Security', 'Firewalls', 'VPN', 'IDS/IPS', 'Secure Architecture']
+  },
+  {
+    id: 'cyber-5',
+    title: 'CISSP Certification Complete Course',
+    instructor: 'Alex Thompson',
+    description: 'Comprehensive preparation for the CISSP certification exam covering all eight domains. Designed for experienced security professionals looking to validate their expertise and advance their careers.',
+    price: 129.99,
+    inrPrice: 10799,
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '14 weeks',
+    lessons: 64,
+    rating: 4.9,
+    students: 3860,
+    tags: ['CISSP', 'Information Security', 'Certification', 'Risk Management']
+  },
+  {
+    id: 'cyber-6',
+    title: 'Web Application Security & OWASP Top 10',
+    instructor: 'Michael Rodriguez',
+    description: 'Learn how to secure web applications against the OWASP Top 10 vulnerabilities. Master techniques for identifying, exploiting, and mitigating common web security flaws including injections, XSS, CSRF, and more.',
+    price: 89.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1974&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Intermediate',
+    duration: '7 weeks',
+    lessons: 32,
+    rating: 4.7,
+    students: 5680,
+    tags: ['OWASP', 'Web Security', 'XSS', 'SQL Injection', 'CSRF']
+  },
+  {
+    id: 'cyber-7',
+    title: 'Cyber Threat Intelligence',
+    instructor: 'Dr. Priya Sharma',
+    description: 'Develop skills in cyber threat intelligence gathering, analysis, and implementation. Learn how to identify emerging threats, understand adversary tactics, and apply intelligence to strengthen security defenses.',
+    price: 94.99,
+    inrPrice: 7899,
+    image: 'https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '9 weeks',
+    lessons: 40,
+    rating: 4.8,
+    students: 3240,
+    tags: ['Threat Intelligence', 'APT', 'Threat Hunting', 'Intelligence Analysis']
+  },
+  {
+    id: 'cyber-8',
+    title: 'Cloud Security & DevSecOps',
+    instructor: 'Raj Patel',
+    description: 'Master security best practices for cloud environments (AWS, Azure, GCP) and learn how to integrate security into DevOps pipelines. Covers infrastructure as code security, container security, and compliance automation.',
+    price: 99.99,
+    inrPrice: 8299,
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '10 weeks',
+    lessons: 44,
+    rating: 4.8,
+    students: 4120,
+    featured: true,
+    tags: ['Cloud Security', 'DevSecOps', 'Container Security', 'AWS', 'Azure']
+  },
+  {
+    id: 'cyber-9',
+    title: 'Digital Forensics & Incident Response',
+    instructor: 'Alex Thompson',
+    description: 'Learn digital forensics techniques and incident response processes. Master tools for evidence collection, malware analysis, memory forensics, and developing effective incident response plans.',
+    price: 89.99,
+    inrPrice: 7499,
+    image: 'https://images.unsplash.com/photo-1563386732940-536c7866a251?q=80&w=2070&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Intermediate',
+    duration: '8 weeks',
+    lessons: 38,
+    rating: 4.7,
+    students: 3980,
+    tags: ['Digital Forensics', 'Incident Response', 'Malware Analysis', 'Evidence Collection']
+  },
+  {
+    id: 'cyber-10',
+    title: 'Mobile Application Security',
+    instructor: 'Michael Rodriguez',
+    description: 'Understand the unique security challenges of mobile applications and learn how to secure Android and iOS apps. Covers secure coding practices, reverse engineering, penetration testing, and securing sensitive data on mobile platforms.',
+    price: 84.99,
+    inrPrice: 6999,
+    image: 'https://images.unsplash.com/photo-1573166826272-5cf7e998e474?q=80&w=2069&auto=format&fit=crop',
+    category: 'Cybersecurity',
+    level: 'Intermediate',
+    duration: '7 weeks',
+    lessons: 34,
+    rating: 4.6,
+    students: 3560,
+    tags: ['Mobile Security', 'Android', 'iOS', 'App Penetration Testing', 'OWASP Mobile']
+  }
+];
+
+export const allCourses: Course[] = [
+  ...sampleCourses,
+  ...programmingCourses,
+  ...cybersecurityCourses,
+];
+
+export const getCoursesByCategory = (category: string): Course[] => {
+  if (category === 'All') {
+    return allCourses;
+  }
+  return allCourses.filter(course => course.category === category);
+};
