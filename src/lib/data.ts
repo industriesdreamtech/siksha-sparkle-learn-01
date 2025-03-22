@@ -627,4 +627,20 @@ const programmingCourses: Course[] = [
   {
     id: 'prog-6',
     title: 'TypeScript for Modern Web Development',
-    instructor: 'Michael Rodriguez
+    instructor: 'Michael Rodriguez',
+    description: 'Learn TypeScript for building scalable and maintainable web applications with static type checking and advanced features.',
+    price: 84.99,
+    inrPrice: 6999,
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop',
+    category: 'Programming',
+    level: 'Intermediate',
+    duration: '9 weeks',
+    lessons: 40,
+    rating: 4.8,
+    students: 7920,
+    tags: ['TypeScript', 'JavaScript', 'Web Development', 'Angular', 'React']
+  }
+];
+
+// Export all course arrays
+export const allCourses = [...sampleCourses, ...programmingCourses];
