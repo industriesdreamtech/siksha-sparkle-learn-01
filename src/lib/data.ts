@@ -542,7 +542,6 @@ export const sampleCourses: Course[] = [
   }
 ];
 
-// Additional courses by category
 const programmingCourses: Course[] = [
   {
     id: 'prog-1',
@@ -642,5 +641,27 @@ const programmingCourses: Course[] = [
   }
 ];
 
-// Export all course arrays
 export const allCourses = [...sampleCourses, ...programmingCourses];
+
+export const getCoursesByCategory = (category: string) => {
+  if (category === 'All') {
+    return allCourses;
+  }
+  return allCourses.filter(course => course.category === category);
+};
+
+export const getFeaturedCourses = () => {
+  return allCourses.filter(course => course.featured);
+};
+
+export const getCourseById = (id: string) => {
+  return allCourses.find(course => course.id === id);
+};
+
+export const getCoursesByInstructor = (instructorName: string) => {
+  return allCourses.filter(course => course.instructor === instructorName);
+};
+
+export const getInstructorByName = (name: string) => {
+  return instructors.find(instructor => instructor.name === name);
+};
