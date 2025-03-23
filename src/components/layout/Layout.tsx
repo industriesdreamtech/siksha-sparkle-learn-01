@@ -30,10 +30,36 @@ export function Layout({ children }: LayoutProps) {
         viewportMeta.setAttribute('name', 'viewport');
         document.head.appendChild(viewportMeta);
       }
-      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no');
+      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1');
       
       // Add class to body for mobile-specific styling
       document.body.classList.add('mobile-device');
+      
+      // Fix iOS keyboard issues by adding listener for focus events
+      const fixIOSKeyboard = () => {
+        document.body.classList.add('keyboard-open');
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+        }, 300);
+      };
+      
+      const resetIOSKeyboard = () => {
+        document.body.classList.remove('keyboard-open');
+      };
+      
+      // Apply to inputs, select fields, and textareas
+      const formFields = document.querySelectorAll('input, select, textarea');
+      formFields.forEach(field => {
+        field.addEventListener('focus', fixIOSKeyboard);
+        field.addEventListener('blur', resetIOSKeyboard);
+      });
+      
+      return () => {
+        formFields.forEach(field => {
+          field.removeEventListener('focus', fixIOSKeyboard);
+          field.removeEventListener('blur', resetIOSKeyboard);
+        });
+      };
     } else {
       document.body.classList.remove('mobile-device');
     }

@@ -12,12 +12,20 @@ export function useIsMobile() {
       const isMobileByWidth = window.innerWidth < MOBILE_BREAKPOINT
       const isMobileByUserAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
       
-      // Either width-based or user-agent-based detection
-      return isMobileByWidth || isMobileByUserAgent
+      // Added touch check to better identify mobile devices
+      const isTouchDevice = ('ontouchstart' in window) || 
+        (navigator.maxTouchPoints > 0) || 
+        // @ts-ignore - For Safari iOS
+        (navigator.msMaxTouchPoints > 0)
+      
+      // Either width-based, user-agent-based, or touch-based detection
+      return isMobileByWidth || isMobileByUserAgent || isTouchDevice
     }
     
-    // Set initial value
-    setIsMobile(checkMobile())
+    // Set initial value - delay to ensure accurate window size after any transitions
+    const initialTimer = setTimeout(() => {
+      setIsMobile(checkMobile())
+    }, 10)
     
     // Handle resize events
     const handleResize = () => {
@@ -43,6 +51,7 @@ export function useIsMobile() {
     }
     
     return () => {
+      clearTimeout(initialTimer)
       window.removeEventListener("resize", handleResize)
       window.removeEventListener("orientationchange", handleResize)
       

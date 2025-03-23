@@ -173,6 +173,33 @@
   .fixed {
     padding-bottom: env(safe-area-inset-bottom) !important;
   }
+  
+  /* Mobile search improvements */
+  .mobile-search-dialog {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    max-height: 100% !important;
+  }
+  
+  .mobile-search-dialog .mobile-command-list {
+    height: calc(100vh - 56px) !important;
+    max-height: none !important;
+  }
+  
+  .mobile-command-list [cmdk-group-heading] {
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+    font-weight: 600 !important;
+  }
+  
+  .mobile-command-list [cmdk-item] {
+    padding: 12px !important;
+    min-height: 54px !important;
+    margin-bottom: 2px !important;
+  }
 }
 
 /* Improve Mobile Chatbot UI */
@@ -301,4 +328,41 @@ button, .button {
 /* Ensure proper spacing for tab content */
 [role="tabpanel"] {
   padding: 1rem !important;
+}
+
+/* Mobile Search Specific Fixes */
+@media (max-width: 768px) {
+  /* Make the search button more tappable */
+  [data-command-dialog] {
+    padding: 0 !important;
+  }
+  
+  [data-command-input] {
+    font-size: 16px !important;
+  }
+  
+  [data-command-list] {
+    overflow-y: auto !important;
+    padding-bottom: 60px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  [cmdk-group] {
+    padding: 0 8px !important;
+  }
+  
+  [cmdk-item] {
+    border-radius: 8px !important;
+    transition: background-color 0.2s ease !important;
+  }
+  
+  /* Better touch feedback */
+  [cmdk-item]:active {
+    background-color: var(--primary-light) !important;
+  }
+  
+  /* Fix keyboard issues */
+  .mobile-search-dialog input {
+    caret-color: var(--primary) !important;
+  }
 }

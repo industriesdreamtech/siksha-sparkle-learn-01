@@ -272,13 +272,13 @@ export function Navbar() {
         </div>
 
         {/* Mobile Search & Menu */}
-        <div className="md:hidden flex items-center gap-3">
-          <div className="mr-2 flex-1">
+        <div className="md:hidden flex items-center gap-2 flex-1 max-w-full justify-end">
+          <div className={`${isMenuOpen ? 'hidden' : 'flex-1'}`}>
             <GlobalSearch />
           </div>
           
           <button 
-            className="p-2 text-foreground/70 hover:text-foreground rounded-full" 
+            className="p-2 text-foreground/70 hover:text-foreground rounded-full flex-shrink-0" 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -290,6 +290,11 @@ export function Navbar() {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden glass border-t border-border/20 px-4 py-5 animate-fade-in">
+          {/* Add search bar at the top of mobile menu when menu is open */}
+          <div className="mb-4">
+            <GlobalSearch />
+          </div>
+          
           <nav className="flex flex-col space-y-3">
             <Link 
               to="/" 

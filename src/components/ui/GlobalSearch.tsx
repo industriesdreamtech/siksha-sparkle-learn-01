@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { sampleCourses } from "@/lib/data";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 type SearchResult = {
   id: string;
@@ -39,6 +40,7 @@ export function GlobalSearch() {
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   // Mock search function - in a real app, this would query your backend
   const performSearch = (query: string) => {
@@ -132,27 +134,37 @@ export function GlobalSearch() {
     setOpen(false);
     navigate(result.url);
   };
+  
+  const handleSearchClose = () => {
+    setOpen(false);
+    setSearchQuery("");
+  };
 
   return (
     <>
       <Button
         variant="outline"
-        className="relative w-full md:w-[300px] lg:w-[400px] justify-start text-sm text-muted-foreground px-3 gap-2"
+        className={`relative ${isMobile ? 'w-full h-10' : 'w-full md:w-[300px] lg:w-[400px]'} justify-start text-sm text-muted-foreground px-3 gap-2`}
         onClick={() => setOpen(true)}
+        aria-label="Search"
       >
         <Search className="h-4 w-4" />
-        <span className="flex-1 text-left">Search courses, instructors, universities...</span>
-        <kbd className="hidden md:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-          <span className="text-xs">⌘</span>K
-        </kbd>
+        <span className="flex-1 text-left truncate">
+          {isMobile ? "Search..." : "Search courses, instructors, universities..."}
+        </span>
+        {!isMobile && (
+          <kbd className="hidden md:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+            <span className="text-xs">⌘</span>K
+          </kbd>
+        )}
       </Button>
 
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog open={open} onOpenChange={setOpen} className="mobile-search-dialog">
         <div className="flex items-center border-b px-3">
           <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
           <CommandInput
             ref={inputRef}
-            placeholder="Search anything..."
+            placeholder={isMobile ? "Search..." : "Search anything..."}
             value={searchQuery}
             onValueChange={setSearchQuery}
             className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
@@ -161,15 +173,16 @@ export function GlobalSearch() {
             <Button
               variant="ghost"
               size="icon"
-              className="h-6 w-6"
+              className="h-8 w-8 rounded-full flex items-center justify-center"
               onClick={() => setSearchQuery("")}
+              aria-label="Clear search"
             >
-              <X className="h-3 w-3" />
+              <X className="h-4 w-4" />
               <span className="sr-only">Clear</span>
             </Button>
           )}
         </div>
-        <CommandList>
+        <CommandList className={isMobile ? "mobile-command-list" : ""}>
           {isSearching ? (
             <div className="flex items-center justify-center py-12">
               <Loader2 className="h-8 w-8 animate-spin text-primary/70" />
@@ -191,13 +204,14 @@ export function GlobalSearch() {
                         key={result.id}
                         value={result.id}
                         onSelect={() => handleSelect(result)}
+                        className={isMobile ? "p-3" : ""}
                       >
-                        <div className="flex items-center">
+                        <div className="flex items-center w-full">
                           <div className="mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
                             {result.icon}
                           </div>
                           <div className="flex-1 overflow-hidden">
-                            <p className="truncate">{result.title}</p>
+                            <p className="truncate font-medium">{result.title}</p>
                             {result.subtitle && (
                               <p className="truncate text-xs text-muted-foreground">
                                 {result.subtitle}
@@ -220,13 +234,14 @@ export function GlobalSearch() {
                         key={result.id}
                         value={result.id}
                         onSelect={() => handleSelect(result)}
+                        className={isMobile ? "p-3" : ""}
                       >
-                        <div className="flex items-center">
+                        <div className="flex items-center w-full">
                           <div className="mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
                             {result.icon}
                           </div>
                           <div className="flex-1 overflow-hidden">
-                            <p className="truncate">{result.title}</p>
+                            <p className="truncate font-medium">{result.title}</p>
                             {result.subtitle && (
                               <p className="truncate text-xs text-muted-foreground">
                                 {result.subtitle}
@@ -249,13 +264,14 @@ export function GlobalSearch() {
                         key={result.id}
                         value={result.id}
                         onSelect={() => handleSelect(result)}
+                        className={isMobile ? "p-3" : ""}
                       >
-                        <div className="flex items-center">
+                        <div className="flex items-center w-full">
                           <div className="mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
                             {result.icon}
                           </div>
                           <div className="flex-1 overflow-hidden">
-                            <p className="truncate">{result.title}</p>
+                            <p className="truncate font-medium">{result.title}</p>
                             {result.subtitle && (
                               <p className="truncate text-xs text-muted-foreground">
                                 {result.subtitle}
@@ -269,9 +285,22 @@ export function GlobalSearch() {
                 </CommandGroup>
               )}
               
-              <div className="py-2 px-2 text-xs text-center text-muted-foreground border-t">
-                <p>Press <kbd className="px-1 rounded border bg-muted">Enter</kbd> to view all results or <kbd className="px-1 rounded border bg-muted">Esc</kbd> to close</p>
-              </div>
+              {isMobile ? (
+                <div className="py-3 px-4 text-center border-t">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full" 
+                    onClick={handleSearchClose}
+                  >
+                    Close
+                  </Button>
+                </div>
+              ) : (
+                <div className="py-2 px-2 text-xs text-center text-muted-foreground border-t">
+                  <p>Press <kbd className="px-1 rounded border bg-muted">Enter</kbd> to view all results or <kbd className="px-1 rounded border bg-muted">Esc</kbd> to close</p>
+                </div>
+              )}
             </>
           )}
         </CommandList>
