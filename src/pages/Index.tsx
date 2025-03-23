@@ -10,6 +10,9 @@ import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getFeaturedCourses, getCoursesByCategory, categories } from '@/lib/data';
 import { CoursesSlider } from '@/components/ui/CoursesSlider';
+import { PromotionalBanner } from '@/components/ui/PromotionalBanner';
+import { CoursePromoSlider } from '@/components/ui/CoursePromoSlider';
+import { Layout } from '@/components/layout/Layout';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -17,6 +20,7 @@ const Index = () => {
   const [featuredCourses, setFeaturedCourses] = useState(getFeaturedCourses());
   const [isVisible, setIsVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showTopBanner, setShowTopBanner] = useState(true);
   const heroRef = useRef<HTMLDivElement>(null);
   
   const [animatedSections, setAnimatedSections] = useState<string[]>([]);
@@ -97,8 +101,16 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Navbar />
+    <Layout>
+      {showTopBanner && (
+        <div className="sticky top-0 z-50 w-full">
+          <PromotionalBanner 
+            onClose={() => setShowTopBanner(false)}
+            variant="primary"
+            position="top"
+          />
+        </div>
+      )}
       
       <section ref={heroRef} className="pt-28 pb-16 md:pt-32 md:pb-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-black/[0.02] -z-10"></div>
@@ -165,6 +177,15 @@ const Index = () => {
         </div>
       </section>
       
+      <section id="course-promos" className={`py-12 bg-gray-50 dark:bg-gray-900/50 ${animatedSections.includes('course-promos') ? 'animate-fade-up' : 'opacity-0'}`}>
+        <div className="container mx-auto px-4">
+          <CoursePromoSlider 
+            title="Limited Time Course Deals"
+            subtitle="Premium courses with special offers - Enroll now before they're gone!"
+          />
+        </div>
+      </section>
+      
       <section id="categories" className={`py-16 ${animatedSections.includes('categories') ? 'animate-fade-up' : 'opacity-0'}`}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
@@ -228,6 +249,16 @@ const Index = () => {
               <p className="text-sm text-muted-foreground">Satisfaction Rate</p>
             </div>
           </div>
+        </div>
+      </section>
+      
+      <section id="mid-promotion" className={`py-8 ${animatedSections.includes('mid-promotion') ? 'animate-fade-up' : 'opacity-0'}`}>
+        <div className="container mx-auto px-4">
+          <PromotionalBanner 
+            variant="secondary"
+            position="middle"
+            showCloseButton={false}
+          />
         </div>
       </section>
       
@@ -407,6 +438,16 @@ const Index = () => {
         </div>
       </section>
       
+      <section id="bottom-promotion" className={`py-8 ${animatedSections.includes('bottom-promotion') ? 'animate-fade-up' : 'opacity-0'}`}>
+        <div className="container mx-auto px-4">
+          <PromotionalBanner 
+            variant="accent"
+            position="bottom"
+            showCloseButton={false}
+          />
+        </div>
+      </section>
+      
       <section id="cta" className={`py-20 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden ${animatedSections.includes('cta') ? 'animate-fade-up' : 'opacity-0'}`}>
         <div className="absolute inset-0 bg-grid-white/5 -z-10"></div>
         <div className="absolute left-0 top-0 w-1/2 aspect-square rounded-full bg-gradient-to-br from-primary/20 to-transparent blur-3xl -z-10"></div>
@@ -433,9 +474,9 @@ const Index = () => {
           </div>
         </div>
       </section>
-
+      
       <Footer />
-    </div>
+    </Layout>
   );
 };
 
