@@ -36,16 +36,26 @@ export function ChatbotDrawer() {
           <Button 
             variant="secondary" 
             size="icon" 
-            className="fixed right-4 bottom-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 bg-primary hover:bg-secondary"
+            className="fixed right-4 bottom-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 bg-primary hover:bg-primary/90"
           >
-            <MessageCircleHeart className="h-5 w-5 text-white" />
+            <MessageCircleHeart className="h-5 w-5 text-primary-foreground" />
           </Button>
         </DrawerTrigger>
         <DrawerContent className="h-[90vh] max-h-[90vh] py-4" data-drawer="chat-content">
           <DrawerHeader className="border-b pb-3 px-4">
-            <DrawerTitle className="flex items-center">
-              <Heart className="mr-2 h-5 w-5 text-pink-400" />
-              AIsha - Your Learning Assistant
+            <DrawerTitle className="flex items-center justify-between">
+              <div className="flex items-center">
+                <Heart className="mr-2 h-5 w-5 text-pink-400" />
+                <span>AIsha - Your Learning Assistant</span>
+              </div>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="h-8 w-8 p-0" 
+                onClick={() => setIsOpen(false)}
+              >
+                <X className="h-4 w-4" />
+              </Button>
             </DrawerTitle>
           </DrawerHeader>
           <div className="flex-1 overflow-hidden h-[calc(90vh-80px)]">
@@ -65,9 +75,9 @@ export function ChatbotDrawer() {
               <Button 
                 variant="secondary" 
                 size="icon" 
-                className="fixed left-4 bottom-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 bg-primary hover:bg-secondary"
+                className="fixed left-4 bottom-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 bg-primary hover:bg-primary/90"
               >
-                <MessageCircleHeart className="h-5 w-5 text-white" />
+                <MessageCircleHeart className="h-5 w-5 text-primary-foreground" />
               </Button>
             </SheetTrigger>
           </TooltipTrigger>

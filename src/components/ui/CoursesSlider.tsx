@@ -47,10 +47,23 @@ export function CoursesSlider({
   // Limit visible items for better carousel performance
   const visibleItems = items.slice(0, 20);
   const totalItems = items.length;
+
+  // Determine the appropriate widths for carousel items based on screen size and variant
+  const getItemClassName = () => {
+    if (isMobile) return "pl-2 basis-full sm:basis-full";
+    
+    if (variant === "featured") {
+      return "pl-4 md:basis-1/2 lg:basis-1/2";
+    } else if (variant === "tutors") {
+      return "pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4";
+    } else {
+      return "pl-4 md:basis-1/2 lg:basis-1/3";
+    }
+  };
   
   return (
-    <div className="w-full">
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
+    <div className="w-full px-2 md:px-0">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 md:mb-8">
         <div>
           {badgeText && (
             <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium bg-primary/10 text-primary mb-2">
@@ -58,8 +71,8 @@ export function CoursesSlider({
               <span>{badgeText}</span>
             </div>
           )}
-          <h2 className="font-display text-3xl font-medium mb-2">{title}</h2>
-          {subtitle && <p className="text-muted-foreground">{subtitle}</p>}
+          <h2 className="font-display text-2xl md:text-3xl font-medium mb-2">{title}</h2>
+          {subtitle && <p className="text-sm md:text-base text-muted-foreground">{subtitle}</p>}
           {totalItems > 20 && (
             <p className="text-xs text-muted-foreground mt-1">
               Showing {visibleItems.length} of {totalItems} {isInstructorView ? 'tutors' : 'courses'}
@@ -113,7 +126,7 @@ export function CoursesSlider({
             visibleItems.map((item) => (
               <CarouselItem 
                 key={(`instructor-${(item as Instructor).name}`)} 
-                className={isMobile ? "pl-2 basis-full" : "pl-4 md:basis-1/2 lg:basis-1/4"}
+                className={getItemClassName()}
               >
                 <TutorCard instructor={item as Instructor} />
               </CarouselItem>
@@ -123,7 +136,7 @@ export function CoursesSlider({
             visibleItems.map((item) => (
               <CarouselItem 
                 key={(`course-${(item as Course).id}`)} 
-                className={isMobile ? "pl-2 basis-full" : "pl-4 md:basis-1/2 lg:basis-1/3"}
+                className={getItemClassName()}
               >
                 {variant === "featured" ? (
                   <FeaturedCourse course={item as Course} />
@@ -138,11 +151,11 @@ export function CoursesSlider({
         {!isMobile && (
           <>
             <CarouselPrevious
-              className="absolute -left-12 md:-left-6 embla__prev"
+              className="absolute left-0 md:-left-6 embla__prev"
               disabled={!canScrollPrev}
             />
             <CarouselNext
-              className="absolute -right-12 md:-right-6 embla__next"
+              className="absolute right-0 md:-right-6 embla__next"
               disabled={!canScrollNext}
             />
           </>
@@ -150,7 +163,7 @@ export function CoursesSlider({
       </Carousel>
       
       {viewAllLink && (
-        <div className="mt-8 text-center">
+        <div className="mt-6 md:mt-8 text-center">
           <Button variant="outline" asChild>
             <a href={viewAllLink}>
               View All {title} ({totalItems})

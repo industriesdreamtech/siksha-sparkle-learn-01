@@ -1,4 +1,3 @@
-
 #root {
   max-width: 100%;
   margin: 0 auto;
@@ -107,8 +106,14 @@
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
+  #root {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+
   h1 {
-    font-size: 2rem !important;
+    font-size: 1.75rem !important;
     line-height: 1.2 !important;
   }
   
@@ -131,12 +136,68 @@
   }
   
   section {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
   }
   
   .card, .bg-card {
     padding: 1rem !important;
+  }
+
+  /* Fix overflow issues on mobile */
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+}
+
+/* Improve Mobile Chatbot UI */
+@media (max-width: 768px) {
+  [data-drawer="chat-drawer"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 90vh !important;
+    bottom: 0 !important;
+    border-radius: 1rem 1rem 0 0 !important;
+  }
+  
+  [data-drawer="chat-content"] {
+    width: 100% !important;
+    padding: 1rem !important;
+    max-height: calc(90vh - 4rem) !important;
+    overflow-y: auto !important;
+  }
+  
+  [data-drawer="chat-input"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.75rem !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    background-color: var(--background) !important;
+  }
+  
+  .vaul-drawer-content {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+}
+
+/* Fix button visibility and sizing on mobile */
+@media (max-width: 768px) {
+  button, .button {
+    padding: 0.5rem 0.75rem !important;
+    min-height: 2.25rem !important;
+  }
+  
+  [role="tabpanel"] {
+    padding: 0.75rem !important;
+  }
+  
+  /* Fix carousel arrows */
+  .carousel-button {
+    display: none !important;
   }
 }
 
