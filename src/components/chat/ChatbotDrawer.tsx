@@ -36,9 +36,9 @@ export function ChatbotDrawer() {
           <Button 
             variant="secondary" 
             size="icon" 
-            className="fixed right-4 bottom-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 bg-primary hover:bg-primary/90"
+            className="fixed right-4 bottom-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 bg-primary hover:bg-primary/90 h-14 w-14"
           >
-            <MessageCircleHeart className="h-5 w-5 text-primary-foreground" />
+            <MessageCircleHeart className="h-6 w-6 text-primary-foreground" />
           </Button>
         </DrawerTrigger>
         <DrawerContent className="h-[90vh] max-h-[90vh] py-4" data-drawer="chat-content">
@@ -51,10 +51,10 @@ export function ChatbotDrawer() {
               <Button 
                 variant="ghost" 
                 size="sm" 
-                className="h-8 w-8 p-0" 
+                className="h-10 w-10 p-0 rounded-full" 
                 onClick={() => setIsOpen(false)}
               >
-                <X className="h-4 w-4" />
+                <X className="h-5 w-5" />
               </Button>
             </DrawerTitle>
           </DrawerHeader>

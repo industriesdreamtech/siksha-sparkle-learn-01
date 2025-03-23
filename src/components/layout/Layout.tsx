@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,6 +11,7 @@ interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
   const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const isMobile = useIsMobile();
   
   // Apply any theme settings on component mount
   useEffect(() => {
@@ -19,6 +21,23 @@ export function Layout({ children }: LayoutProps) {
     } else {
       document.documentElement.classList.remove('dark');
     }
+    
+    if (isMobile) {
+      // Add a viewport meta tag with content-fit=cover for better mobile display
+      let viewportMeta = document.querySelector('meta[name="viewport"]');
+      if (!viewportMeta) {
+        viewportMeta = document.createElement('meta');
+        viewportMeta.setAttribute('name', 'viewport');
+        document.head.appendChild(viewportMeta);
+      }
+      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no');
+      
+      // Add class to body for mobile-specific styling
+      document.body.classList.add('mobile-device');
+    } else {
+      document.body.classList.remove('mobile-device');
+    }
+    
     setMounted(true);
     
     // Simulate loading to ensure content renders properly
@@ -27,7 +46,7 @@ export function Layout({ children }: LayoutProps) {
     }, 200);
     
     return () => clearTimeout(timer);
-  }, []);
+  }, [isMobile]);
 
   // Don't render until client-side to prevent theme flash
   if (!mounted) {
@@ -39,7 +58,7 @@ export function Layout({ children }: LayoutProps) {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className={`flex flex-col min-h-screen bg-background ${isMobile ? 'mobile-layout' : ''}`}>
       <Navbar />
       <main className={`flex-1 pt-16 transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
         {children}
