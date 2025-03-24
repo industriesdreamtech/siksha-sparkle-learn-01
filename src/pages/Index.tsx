@@ -1,6 +1,7 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, BookOpen, Sparkles, Users, Award, BarChart3, Play, Star, ChevronRight, Search, Zap, TrendingUp, BrainCircuit, Code, Clock, CheckCircle, Filter, Globe, Shield } from 'lucide-react';
+import { ArrowRight, BookOpen, Sparkles, Users, Award, BarChart3, Play, Star, ChevronRight, Search, Zap, TrendingUp, BrainCircuit, Code, Clock, CheckCircle, Filter, Globe, Shield, Percent } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CategoryFilter } from '@/components/ui/CategoryFilter';
 import { Navbar } from '@/components/layout/Navbar';
@@ -10,6 +11,13 @@ import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getFeaturedCourses, getCoursesByCategory, categories } from '@/lib/data';
 import { CoursesSlider } from '@/components/ui/CoursesSlider';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from '@/components/ui/carousel';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -77,6 +85,16 @@ const Index = () => {
     navigate(`/courses?category=${encodeURIComponent(category)}`);
   };
   
+  // Course discounts data
+  const discounts = [
+    { courseName: "Python Masterclass", discount: "30% OFF", color: "from-blue-500 to-blue-700" },
+    { courseName: "React Development", discount: "20% OFF", color: "from-teal-500 to-teal-700" },
+    { courseName: "Data Science Bootcamp", discount: "50% OFF", color: "from-purple-500 to-purple-700" },
+    { courseName: "UI/UX Design", discount: "15% OFF", color: "from-pink-500 to-pink-700" },
+    { courseName: "Machine Learning", discount: "40% OFF", color: "from-green-500 to-green-700" },
+    { courseName: "Web Development", discount: "25% OFF", color: "from-orange-500 to-orange-700" },
+  ];
+  
   const testimonials = [
     {
       id: 1,
@@ -131,9 +149,20 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <div className={`transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-              <div className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-secondary/80 text-primary mb-6 animate-bounce">
-                <Sparkles className="h-3.5 w-3.5 mr-2 text-primary" />
-                <span>Transform your career with premium tech courses</span>
+              <div className="mb-6">
+                <Carousel className="w-full max-w-md mx-auto">
+                  <CarouselContent>
+                    {discounts.map((item, index) => (
+                      <CarouselItem key={index}>
+                        <div className={`inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium bg-gradient-to-r ${item.color} text-white`}>
+                          <Percent className="h-3.5 w-3.5 mr-2" />
+                          <span className="mr-2">{item.courseName}:</span>
+                          <span className="font-bold">{item.discount}</span>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
               </div>
               
               <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-6 md:leading-tight">
