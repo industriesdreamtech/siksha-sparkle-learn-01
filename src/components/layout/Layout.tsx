@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { App as CapacitorApp } from '@capacitor/core';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -35,6 +36,29 @@ export function Layout({ children }: LayoutProps) {
       // Add class to body for mobile-specific styling
       document.body.classList.add('mobile-device');
       
+      // Handle hardware back button for Android
+      const setupBackButtonHandler = async () => {
+        try {
+          // Only run this in Capacitor environment
+          if ('Capacitor' in window) {
+            CapacitorApp.addListener('backButton', ({ canGoBack }) => {
+              if (canGoBack) {
+                window.history.back();
+              } else {
+                // Ask user if they want to exit the app
+                if (confirm('Are you sure you want to exit the app?')) {
+                  CapacitorApp.exitApp();
+                }
+              }
+            });
+          }
+        } catch (error) {
+          console.log('Not running in Capacitor environment', error);
+        }
+      };
+      
+      setupBackButtonHandler();
+      
       // Fix iOS keyboard issues by adding listener for focus events
       const fixIOSKeyboard = () => {
         document.body.classList.add('keyboard-open');
@@ -59,6 +83,11 @@ export function Layout({ children }: LayoutProps) {
           field.removeEventListener('focus', fixIOSKeyboard);
           field.removeEventListener('blur', resetIOSKeyboard);
         });
+        
+        // Clean up Capacitor listeners
+        if ('Capacitor' in window) {
+          CapacitorApp.removeAllListeners();
+        }
       };
     } else {
       document.body.classList.remove('mobile-device');
