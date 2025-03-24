@@ -26,20 +26,22 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ChatbotDrawer />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/course/:id" element={<CourseDetail />} />
-          <Route path="/instructors" element={<Instructors />} />
-          <Route path="/instructor/:name" element={<InstructorProfile />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/community" element={<Community />} />
-          <Route path="/settings" element={<Settings />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="/about" element={<NotFound />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/course/:id" element={<CourseDetail />} />
+            <Route path="/instructors" element={<Instructors />} />
+            <Route path="/instructor/:name" element={<InstructorProfile />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/settings" element={<Settings />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/about" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
