@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { App as CapacitorApp } from '@capacitor/core';
+import { Capacitor } from '@capacitor/core';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -40,14 +40,20 @@ export function Layout({ children }: LayoutProps) {
       const setupBackButtonHandler = async () => {
         try {
           // Only run this in Capacitor environment
-          if ('Capacitor' in window) {
-            CapacitorApp.addListener('backButton', ({ canGoBack }) => {
-              if (canGoBack) {
+          if (Capacitor.isNativePlatform()) {
+            document.addEventListener('backbutton', (e) => {
+              e.preventDefault();
+              
+              if (window.history.length > 1) {
                 window.history.back();
               } else {
                 // Ask user if they want to exit the app
                 if (confirm('Are you sure you want to exit the app?')) {
-                  CapacitorApp.exitApp();
+                  // We can't directly call exitApp in newer Capacitor versions
+                  // Using navigator.app.exitApp() for Android if available
+                  if (navigator && (navigator as any).app && (navigator as any).app.exitApp) {
+                    (navigator as any).app.exitApp();
+                  }
                 }
               }
             });
@@ -85,8 +91,8 @@ export function Layout({ children }: LayoutProps) {
         });
         
         // Clean up Capacitor listeners
-        if ('Capacitor' in window) {
-          CapacitorApp.removeAllListeners();
+        if (Capacitor.isNativePlatform()) {
+          document.removeEventListener('backbutton', () => {});
         }
       };
     } else {
