@@ -52,13 +52,7 @@ export function CoursesSlider({
   const getItemClassName = () => {
     if (isMobile) {
       // Show multiple items on mobile view
-      if (variant === "featured") {
-        return "pl-2 basis-2/3 sm:basis-2/3";
-      } else if (variant === "tutors") {
-        return "pl-2 basis-2/3 sm:basis-2/3";
-      } else {
-        return "pl-2 basis-2/3 sm:basis-2/3";
-      }
+      return "pl-2 basis-1/2 sm:basis-1/2";
     }
     
     if (variant === "featured") {

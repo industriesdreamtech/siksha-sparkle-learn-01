@@ -2,6 +2,9 @@
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
+  type EmblaOptionsType,
+  type EmblaPluginType,
+  type AlignmentOptionType
 } from "embla-carousel-react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
@@ -62,14 +65,14 @@ const Carousel = React.forwardRef<
   ) => {
     const isMobile = useIsMobile();
     
-    // Configure mobile-specific options
-    const mobileOptions = isMobile ? {
+    // Configure mobile-specific options with correct typing for align
+    const mobileOptions: EmblaOptionsType = isMobile ? {
       ...opts,
       dragFree: false,
       loop: false,
-      align: "start",
+      align: "start" as AlignmentOptionType,
       slidesToScroll: 1
-    } : opts;
+    } : (opts as EmblaOptionsType);
     
     const [carouselRef, api] = useEmblaCarousel(
       {
