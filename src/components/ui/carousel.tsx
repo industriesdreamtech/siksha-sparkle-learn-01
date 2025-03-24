@@ -1,10 +1,6 @@
-
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
-  type EmblaOptionsType,
-  type EmblaPluginType,
-  type AlignmentOptionType
 } from "embla-carousel-react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
@@ -16,6 +12,8 @@ type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
 type CarouselOptions = UseCarouselParameters[0]
 type CarouselPlugin = UseCarouselParameters[1]
+
+type AlignmentType = "start" | "center" | "end"
 
 type CarouselProps = {
   opts?: CarouselOptions
@@ -65,14 +63,13 @@ const Carousel = React.forwardRef<
   ) => {
     const isMobile = useIsMobile();
     
-    // Configure mobile-specific options with correct typing for align
-    const mobileOptions: EmblaOptionsType = isMobile ? {
+    const mobileOptions = isMobile ? {
       ...opts,
       dragFree: false,
       loop: false,
-      align: "start" as AlignmentOptionType,
+      align: "start" as AlignmentType,
       slidesToScroll: 1
-    } : (opts as EmblaOptionsType);
+    } : opts;
     
     const [carouselRef, api] = useEmblaCarousel(
       {
@@ -92,7 +89,6 @@ const Carousel = React.forwardRef<
       setCanScrollPrev(api.canScrollPrev())
       setCanScrollNext(api.canScrollNext())
       
-      // Call the onScrollProgress callback if provided
       if (onScrollProgress) {
         onScrollProgress(api);
       }
