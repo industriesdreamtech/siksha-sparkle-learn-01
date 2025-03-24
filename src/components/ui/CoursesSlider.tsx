@@ -66,7 +66,7 @@ export function CoursesSlider({
   
   // Configure carousel options based on device
   const carouselOptions = {
-    align: "start",
+    align: "start" as const,
     loop: false,
     skipSnaps: isMobile ? false : true,
     dragFree: !isMobile,
