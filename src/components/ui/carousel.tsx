@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -59,9 +60,20 @@ const Carousel = React.forwardRef<
     },
     ref
   ) => {
+    const isMobile = useIsMobile();
+    
+    // Configure mobile-specific options
+    const mobileOptions = isMobile ? {
+      ...opts,
+      dragFree: false,
+      loop: false,
+      align: "start",
+      slidesToScroll: 1
+    } : opts;
+    
     const [carouselRef, api] = useEmblaCarousel(
       {
-        ...opts,
+        ...mobileOptions,
         axis: orientation === "horizontal" ? "x" : "y",
       },
       plugins
@@ -131,9 +143,9 @@ const Carousel = React.forwardRef<
         value={{
           carouselRef,
           api: api,
-          opts,
+          opts: mobileOptions,
           orientation:
-            orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
+            orientation || (mobileOptions?.axis === "y" ? "vertical" : "horizontal"),
           scrollPrev,
           scrollNext,
           canScrollPrev,

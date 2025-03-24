@@ -50,7 +50,16 @@ export function CoursesSlider({
 
   // Determine the appropriate widths for carousel items based on screen size and variant
   const getItemClassName = () => {
-    if (isMobile) return "pl-2 basis-full sm:basis-full";
+    if (isMobile) {
+      // Show multiple items on mobile view
+      if (variant === "featured") {
+        return "pl-2 basis-2/3 sm:basis-2/3";
+      } else if (variant === "tutors") {
+        return "pl-2 basis-2/3 sm:basis-2/3";
+      } else {
+        return "pl-2 basis-2/3 sm:basis-2/3";
+      }
+    }
     
     if (variant === "featured") {
       return "pl-4 md:basis-1/2 lg:basis-1/2";
@@ -59,6 +68,14 @@ export function CoursesSlider({
     } else {
       return "pl-4 md:basis-1/2 lg:basis-1/3";
     }
+  };
+  
+  // Configure carousel options based on device
+  const carouselOptions = {
+    align: "start" as const,
+    loop: false,
+    skipSnaps: isMobile ? false : true,
+    dragFree: !isMobile,
   };
   
   return (
@@ -113,10 +130,7 @@ export function CoursesSlider({
       </div>
       
       <Carousel
-        opts={{
-          align: "start",
-          loop: false,
-        }}
+        opts={carouselOptions}
         className="w-full"
         onScrollProgress={handleScrollProgress}
       >

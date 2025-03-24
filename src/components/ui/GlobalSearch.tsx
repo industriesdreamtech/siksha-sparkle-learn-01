@@ -142,22 +142,32 @@ export function GlobalSearch() {
 
   return (
     <>
-      <Button
-        variant="outline"
-        className={`relative ${isMobile ? 'w-full h-10' : 'w-full md:w-[300px] lg:w-[400px]'} justify-start text-sm text-muted-foreground px-3 gap-2`}
-        onClick={() => setOpen(true)}
-        aria-label="Search"
-      >
-        <Search className="h-4 w-4" />
-        <span className="flex-1 text-left truncate">
-          {isMobile ? "Search..." : "Search courses, instructors, universities..."}
-        </span>
-        {!isMobile && (
+      {isMobile ? (
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-9 w-9 rounded-full"
+          onClick={() => setOpen(true)}
+          aria-label="Search"
+        >
+          <Search className="h-4 w-4" />
+        </Button>
+      ) : (
+        <Button
+          variant="outline"
+          className="relative w-full md:w-[300px] lg:w-[400px] justify-start text-sm text-muted-foreground px-3 gap-2"
+          onClick={() => setOpen(true)}
+          aria-label="Search"
+        >
+          <Search className="h-4 w-4" />
+          <span className="flex-1 text-left truncate">
+            Search courses, instructors, universities...
+          </span>
           <kbd className="hidden md:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
             <span className="text-xs">⌘</span>K
           </kbd>
-        )}
-      </Button>
+        </Button>
+      )}
 
       <CommandDialog open={open} onOpenChange={setOpen} className="mobile-search-dialog">
         <div className="flex items-center border-b px-3">

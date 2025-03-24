@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, BookOpen, Sparkles, Users, Award, BarChart3, Play, Star, ChevronRight, Search, Zap, TrendingUp, BrainCircuit, Code, Clock, CheckCircle, Filter, Globe, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CategoryFilter } from '@/components/ui/CategoryFilter';
@@ -12,6 +12,7 @@ import { getFeaturedCourses, getCoursesByCategory, categories } from '@/lib/data
 import { CoursesSlider } from '@/components/ui/CoursesSlider';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [displayCourses, setDisplayCourses] = useState(getCoursesByCategory('All').slice(0, 6));
   const [featuredCourses, setFeaturedCourses] = useState(getFeaturedCourses());
@@ -70,6 +71,10 @@ const Index = () => {
         behavior: 'smooth'
       });
     }
+  };
+  
+  const handleCategoryClick = (category: string) => {
+    navigate(`/courses?category=${encodeURIComponent(category)}`);
   };
   
   const testimonials = [
@@ -173,7 +178,10 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-card hover:bg-secondary/10 border border-border rounded-xl p-6 text-center transition-all hover:shadow-md hover:-translate-y-1">
+            <div 
+              className="bg-card hover:bg-secondary/10 border border-border rounded-xl p-6 text-center transition-all hover:shadow-md hover:-translate-y-1 cursor-pointer"
+              onClick={() => handleCategoryClick('Programming')}
+            >
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <Code className="h-6 w-6 text-primary" />
               </div>
@@ -181,7 +189,10 @@ const Index = () => {
               <p className="text-sm text-muted-foreground mt-1">120+ courses</p>
             </div>
             
-            <div className="bg-card hover:bg-secondary/10 border border-border rounded-xl p-6 text-center transition-all hover:shadow-md hover:-translate-y-1">
+            <div 
+              className="bg-card hover:bg-secondary/10 border border-border rounded-xl p-6 text-center transition-all hover:shadow-md hover:-translate-y-1 cursor-pointer"
+              onClick={() => handleCategoryClick('AI & ML')}
+            >
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <BrainCircuit className="h-6 w-6 text-primary" />
               </div>
@@ -189,7 +200,10 @@ const Index = () => {
               <p className="text-sm text-muted-foreground mt-1">85+ courses</p>
             </div>
             
-            <div className="bg-card hover:bg-secondary/10 border border-border rounded-xl p-6 text-center transition-all hover:shadow-md hover:-translate-y-1">
+            <div 
+              className="bg-card hover:bg-secondary/10 border border-border rounded-xl p-6 text-center transition-all hover:shadow-md hover:-translate-y-1 cursor-pointer"
+              onClick={() => handleCategoryClick('Data Science')}
+            >
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <BarChart3 className="h-6 w-6 text-primary" />
               </div>
@@ -197,7 +211,10 @@ const Index = () => {
               <p className="text-sm text-muted-foreground mt-1">94+ courses</p>
             </div>
             
-            <div className="bg-card hover:bg-secondary/10 border border-border rounded-xl p-6 text-center transition-all hover:shadow-md hover:-translate-y-1">
+            <div 
+              className="bg-card hover:bg-secondary/10 border border-border rounded-xl p-6 text-center transition-all hover:shadow-md hover:-translate-y-1 cursor-pointer"
+              onClick={() => handleCategoryClick('Business')}
+            >
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <TrendingUp className="h-6 w-6 text-primary" />
               </div>
