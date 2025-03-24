@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -76,6 +77,7 @@ const Carousel = React.forwardRef<
       setCanScrollPrev(api.canScrollPrev())
       setCanScrollNext(api.canScrollNext())
       
+      // Call the onScrollProgress callback if provided
       if (onScrollProgress) {
         onScrollProgress(api);
       }
@@ -256,13 +258,6 @@ const CarouselNext = React.forwardRef<
   )
 })
 CarouselNext.displayName = "CarouselNext"
-
-export type CommandDialogProps = {
-  open: boolean
-  onOpenChange: (open: boolean) => void
-  children: React.ReactNode
-  className?: string
-}
 
 export {
   type CarouselApi,
