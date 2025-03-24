@@ -15,6 +15,8 @@ interface CarouselContextProps {
   orientation?: "horizontal" | "vertical"
   opts?: any
   onScrollProgress?: (api: CarouselApi) => void
+  autoplay?: boolean
+  autoplayInterval?: number
 }
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)

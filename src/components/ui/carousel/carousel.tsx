@@ -17,6 +17,8 @@ interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
   orientation?: "horizontal" | "vertical"
   setApi?: (api: CarouselApi) => void
   onScrollProgress?: (api: CarouselApi) => void
+  autoplay?: boolean
+  autoplayInterval?: number
 }
 
 const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
@@ -29,6 +31,8 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       className,
       children,
       onScrollProgress,
+      autoplay = false,
+      autoplayInterval = 3000,
       ...props
     },
     ref
@@ -73,6 +77,22 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     const scrollNext = React.useCallback(() => {
       api?.scrollNext()
     }, [api])
+
+    // Setup autoplay functionality
+    React.useEffect(() => {
+      if (!api || !autoplay) return;
+      
+      const interval = setInterval(() => {
+        if (canScrollNext) {
+          api.scrollNext();
+        } else {
+          // If we can't scroll next, go back to the beginning
+          api.scrollTo(0);
+        }
+      }, autoplayInterval);
+      
+      return () => clearInterval(interval);
+    }, [api, autoplay, autoplayInterval, canScrollNext]);
 
     const handleKeyDown = React.useCallback(
       (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -122,6 +142,8 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
           canScrollPrev,
           canScrollNext,
           onScrollProgress,
+          autoplay,
+          autoplayInterval,
         }}
       >
         <div

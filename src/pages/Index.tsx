@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, BookOpen, Sparkles, Users, Award, BarChart3, Play, Star, ChevronRight, Search, Zap, TrendingUp, BrainCircuit, Code, Clock, CheckCircle, Filter, Globe, Shield, Percent } from 'lucide-react';
@@ -85,7 +84,6 @@ const Index = () => {
     navigate(`/courses?category=${encodeURIComponent(category)}`);
   };
   
-  // Course discounts data
   const discounts = [
     { courseName: "Python Masterclass", discount: "30% OFF", color: "from-blue-500 to-blue-700" },
     { courseName: "React Development", discount: "20% OFF", color: "from-teal-500 to-teal-700" },
@@ -93,8 +91,12 @@ const Index = () => {
     { courseName: "UI/UX Design", discount: "15% OFF", color: "from-pink-500 to-pink-700" },
     { courseName: "Machine Learning", discount: "40% OFF", color: "from-green-500 to-green-700" },
     { courseName: "Web Development", discount: "25% OFF", color: "from-orange-500 to-orange-700" },
+    { courseName: "Cybersecurity Fundamentals", discount: "35% OFF", color: "from-red-500 to-red-700" },
+    { courseName: "JavaScript Bootcamp", discount: "45% OFF", color: "from-yellow-500 to-yellow-700" },
+    { courseName: "AWS Cloud Certification", discount: "25% OFF", color: "from-indigo-500 to-indigo-700" },
+    { courseName: "Digital Marketing", discount: "20% OFF", color: "from-pink-400 to-purple-600" },
   ];
-  
+
   const testimonials = [
     {
       id: 1,
@@ -150,7 +152,12 @@ const Index = () => {
           <div className="max-w-4xl mx-auto text-center">
             <div className={`transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
               <div className="mb-6">
-                <Carousel className="w-full max-w-md mx-auto">
+                <Carousel 
+                  className="w-full max-w-md mx-auto" 
+                  autoplay={true} 
+                  autoplayInterval={3000}
+                  opts={{ loop: true }}
+                >
                   <CarouselContent>
                     {discounts.map((item, index) => (
                       <CarouselItem key={index}>
@@ -326,7 +333,7 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-card rounded-xl p-8 border border-border/50 shadow-sm transition-all hover:-translate-y-2 duration-300">
+            <div className="bg-card rounded-xl p-8 border border-border shadow-sm transition-all hover:-translate-y-2 duration-300">
               <div className="rounded-full w-12 h-12 flex items-center justify-center bg-primary/10 text-primary mb-6">
                 <BookOpen className="h-6 w-6" />
               </div>
@@ -336,7 +343,7 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="bg-card rounded-xl p-8 border border-border/50 shadow-sm transition-all hover:-translate-y-2 duration-300">
+            <div className="bg-card rounded-xl p-8 border border-border shadow-sm transition-all hover:-translate-y-2 duration-300">
               <div className="rounded-full w-12 h-12 flex items-center justify-center bg-primary/10 text-primary mb-6">
                 <Users className="h-6 w-6" />
               </div>
@@ -346,7 +353,7 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="bg-card rounded-xl p-8 border border-border/50 shadow-sm transition-all hover:-translate-y-2 duration-300">
+            <div className="bg-card rounded-xl p-8 border border-border shadow-sm transition-all hover:-translate-y-2 duration-300">
               <div className="rounded-full w-12 h-12 flex items-center justify-center bg-primary/10 text-primary mb-6">
                 <Award className="h-6 w-6" />
               </div>
