@@ -5,13 +5,21 @@ import { Clock, Users, BookOpen, Star } from 'lucide-react';
 import { Course } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
 
 interface CourseCardProps {
   course: Course;
   featured?: boolean;
+  showProgress?: boolean;
+  progress?: number;
 }
 
-export function CourseCard({ course, featured = false }: CourseCardProps) {
+export function CourseCard({ 
+  course, 
+  featured = false,
+  showProgress = false,
+  progress = 0
+}: CourseCardProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   
   return (
@@ -85,6 +93,16 @@ export function CourseCard({ course, featured = false }: CourseCardProps) {
               <span>{course.students.toLocaleString()} students</span>
             </div>
           </div>
+          
+          {showProgress && progress > 0 && (
+            <div className="pt-2">
+              <div className="flex justify-between text-xs mb-1">
+                <span className="text-muted-foreground">Progress</span>
+                <span className="font-medium">{progress}%</span>
+              </div>
+              <Progress value={progress} className="h-2" />
+            </div>
+          )}
           
           <div className="flex items-center justify-between pt-3 border-t border-border/50">
             <div className="font-medium">
