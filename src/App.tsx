@@ -15,7 +15,9 @@ import NotFound from "./pages/NotFound";
 import { ChatbotDrawer } from "./components/chat/ChatbotDrawer";
 import Community from "./pages/Community";
 import Settings from "./pages/Settings";
+import About from "./pages/About";
 import { Layout } from "./components/layout/Layout";
+import { ButtonGlobalStyles } from "./components/ui/button";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +26,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <ButtonGlobalStyles />
       <BrowserRouter>
         <ChatbotDrawer />
         <Layout>
@@ -37,8 +40,8 @@ const App = () => (
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/community" element={<Community />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/about" element={<About />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="/about" element={<NotFound />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>

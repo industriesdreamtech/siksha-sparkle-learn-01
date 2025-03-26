@@ -11,19 +11,23 @@ import {
   PaginationNext, 
   PaginationPrevious
 } from '@/components/ui/pagination';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface CoursesGridProps {
   courses: Course[];
   title?: string;
   itemsPerPage?: number;
+  showProgress?: boolean;
 }
 
 export function CoursesGrid({ 
   courses, 
   title,
-  itemsPerPage = 12
+  itemsPerPage = 12,
+  showProgress = false
 }: CoursesGridProps) {
   const [currentPage, setCurrentPage] = useState(1);
+  const isMobile = useIsMobile();
   
   // Calculate pagination
   const totalPages = Math.ceil(courses.length / itemsPerPage);
@@ -41,7 +45,8 @@ export function CoursesGrid({
   // Generate page numbers to display
   const renderPageNumbers = () => {
     const pages = [];
-    const maxDisplayedPages = 5; // Max number of page links to show
+    // Adjust max displayed pages based on screen size
+    const maxDisplayedPages = isMobile ? 3 : 5;
     
     let startPage = Math.max(1, currentPage - Math.floor(maxDisplayedPages / 2));
     let endPage = Math.min(totalPages, startPage + maxDisplayedPages - 1);
@@ -106,13 +111,28 @@ export function CoursesGrid({
     return pages;
   };
   
+  // Check if no courses are found
+  if (courses.length === 0) {
+    return (
+      <div className="w-full text-center py-12">
+        <h3 className="text-xl font-medium mb-4">No courses found</h3>
+        <p className="text-muted-foreground mb-6">Try adjusting your search criteria or explore our categories.</p>
+      </div>
+    );
+  }
+  
   return (
     <div className="w-full">
       {title && <h2 className="text-2xl font-display font-medium mb-6">{title}</h2>}
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
         {currentCourses.map((course) => (
-          <CourseCard key={course.id} course={course} />
+          <CourseCard 
+            key={course.id} 
+            course={course} 
+            showProgress={showProgress}
+            progress={showProgress ? Math.floor(Math.random() * 100) : undefined} // Demo purpose only
+          />
         ))}
       </div>
       
@@ -126,7 +146,15 @@ export function CoursesGrid({
               />
             </PaginationItem>
             
-            {renderPageNumbers()}
+            {!isMobile && renderPageNumbers()}
+            
+            {isMobile && (
+              <PaginationItem>
+                <span className="px-2">
+                  {currentPage} / {totalPages}
+                </span>
+              </PaginationItem>
+            )}
             
             <PaginationItem>
               <PaginationNext 
